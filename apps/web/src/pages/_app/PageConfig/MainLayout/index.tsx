@@ -1,28 +1,37 @@
 import React, { FC, ReactElement } from 'react';
-import { AppShell, Stack } from '@mantine/core';
-
-import { accountApi } from 'resources/account';
+import { AppShell, Box } from '@mantine/core';
 
 import Header from './Header';
+import Navbar from './Navbar';
 
 interface MainLayoutProps {
   children: ReactElement;
 }
 
-const MainLayout: FC<MainLayoutProps> = ({ children }) => {
-  const { data: account } = accountApi.useGet();
+const MainLayout: FC<MainLayoutProps> = ({ children }) => (
+  <AppShell
+    padding={0}
+    layout="alt"
+    header={{
+      height: 300,
+    }}
+    navbar={{
+      width: {
+        base: 280,
+      },
+      breakpoint: 'sm',
+    }}
+    bg="gray.0"
+  >
+    <Header />
+    <Navbar />
 
-  if (!account) return null;
-
-  return (
-    <AppShell component={Stack} bg="gray.0">
-      <Header />
-
-      <AppShell.Main p={32} pt={account.isShadow ? 144 : 104}>
+    <AppShell.Main display="flex">
+      <Box flex="1 0 100%" px={90} pt="md" pb={82}>
         {children}
-      </AppShell.Main>
-    </AppShell>
-  );
-};
+      </Box>
+    </AppShell.Main>
+  </AppShell>
+);
 
 export default MainLayout;

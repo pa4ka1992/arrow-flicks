@@ -1,3 +1,8 @@
+import { MovieSort } from 'enums';
+import z from 'zod';
+
+import { searchQuerySchema } from 'schemas';
+
 interface Movie {
   original_title: string;
   poster_path: string;
@@ -44,3 +49,17 @@ export interface DetailedMovie extends Movie {
     results: MovieTrailer[];
   };
 }
+
+export type SearchQuery = z.infer<typeof searchQuerySchema>;
+
+type VoteAverage = {
+  lte?: string | number;
+  gte?: string | number;
+};
+
+export type SearchQueryForm = {
+  with_genres?: string[];
+  primary_release_year?: Date[];
+  sort_by: MovieSort;
+  vote_average: VoteAverage;
+};

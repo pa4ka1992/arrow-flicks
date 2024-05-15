@@ -17,7 +17,7 @@ export const useGetMovieDetail = <T>(params: T) =>
   });
 
 export const useGetMoviesGenres = () =>
-  useQuery<MovieGenre[]>({
+  useQuery<{ genres: MovieGenre[] }>({
     queryKey: ['genres'],
     queryFn: () => apiService.get('/movies/get-movies-genres'),
   });

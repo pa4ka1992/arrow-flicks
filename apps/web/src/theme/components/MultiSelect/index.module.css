@@ -1,0 +1,13 @@
+label.label {
+  font-weight: 700;
+  padding-bottom: 8px;
+}
+
+div.input {
+  font-size: var(--mantine-font-size-xs);
+  height: var(--input-height-md);
+}
+
+.pillsList {
+  height: 100%;
+}
