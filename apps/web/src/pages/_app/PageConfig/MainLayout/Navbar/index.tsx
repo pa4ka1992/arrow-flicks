@@ -18,10 +18,8 @@ const Navbar: FC = () => {
         p={0}
         label={
           <Group gap="sm" c="purple.6">
-            <Image src="/logo.svg" />
-            <Title fz="lg" order={1}>
-              ArrowFlicks
-            </Title>
+            <Image src="/images/logo.svg" />
+            <Title order={2}>ArrowFlicks</Title>
           </Group>
         }
         unstyled

@@ -1,0 +1,26 @@
+.root {
+  &[data-variant='transparent'] {
+    &:hover {
+      color: var(--mantine-primary-color-5);
+    }
+
+    &:active {
+      color: var(--mantine-primary-color-7);
+    }
+
+    &:disabled {
+      color: var(--mantine-color-grey-6);
+      background-color: transparent;
+    }
+  }
+
+  &:not([data-variant]) {
+    &:hover {
+      background-color: var(--mantine-primary-color-5);
+    }
+
+    &:active {
+      background-color: var(--mantine-primary-color-7);
+    }
+  }
+}

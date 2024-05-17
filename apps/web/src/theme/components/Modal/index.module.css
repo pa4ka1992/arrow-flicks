@@ -1,0 +1,12 @@
+header.header,
+div.body {
+  padding: var(--mantine-spacing-sm);
+}
+
+.header {
+  border-bottom: 2px solid var(--mantine-color-grey-3);
+}
+
+h2.title {
+  font-size: var(--mantine-font-size-sm);
+}

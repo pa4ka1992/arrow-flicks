@@ -15,6 +15,15 @@ const theme = createTheme({
       h1: {
         fontSize: rem(32),
       },
+      h2: {
+        fontSize: rem(24),
+      },
+      h3: {
+        fontSize: rem(20),
+      },
+      h4: {
+        fontSize: rem(16),
+      },
     },
   },
   fontSizes: {
@@ -44,6 +53,18 @@ const theme = createTheme({
       '#541F9D',
       '#541F9D',
       '#541F9D',
+    ],
+    grey: [
+      '#F5F5F6',
+      '#F5F5F6',
+      '#F5F5F6',
+      '#EAEBED',
+      '#D5D6DC',
+      '#ACADB9',
+      '#7B7C88',
+      '#7B7C88',
+      '#7B7C88',
+      '#7B7C88',
     ],
   },
   components,

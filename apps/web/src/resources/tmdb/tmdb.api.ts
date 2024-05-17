@@ -4,10 +4,11 @@ import { apiService } from 'services';
 
 import { DetailedMovie, MovieGenre, SearchMovieResult } from 'types';
 
-export const useSearchMovies = <T>(params: T) =>
+export const useSearchMovies = <T extends URLSearchParams>(params: T, enabled: boolean) =>
   useQuery<SearchMovieResult>({
-    queryKey: ['movies', params],
-    queryFn: () => apiService.get('/movies/search-movies', params),
+    queryKey: ['movies', params.toString()],
+    queryFn: () => apiService.get(`/movies/search-movies?${params}`),
+    enabled,
   });
 
 export const useGetMovieDetail = <T>(params: T) =>

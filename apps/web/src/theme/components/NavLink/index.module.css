@@ -3,12 +3,12 @@
 
   &[data-active] {
     font-weight: 700;
-    color: var(--mantine-color-purple-6);
-    background-color: var(--mantine-color-purple-3);
+    color: var(--mantine-primary-color-6);
+    background-color: var(--mantine-primary-color-3);
   }
 
   &:not([data-logo]):hover {
-    color: var(--mantine-color-purple-5);
+    color: var(--mantine-primary-color-5);
   }
 
   &:not([data-active]):hover {

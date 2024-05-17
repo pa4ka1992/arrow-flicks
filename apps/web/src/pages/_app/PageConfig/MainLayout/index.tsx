@@ -1,6 +1,7 @@
 import React, { FC, ReactElement } from 'react';
-import { AppShell, Box } from '@mantine/core';
+import { AppShell } from '@mantine/core';
 
+import Container from './Container';
 import Header from './Header';
 import Navbar from './Navbar';
 
@@ -13,7 +14,7 @@ const MainLayout: FC<MainLayoutProps> = ({ children }) => (
     padding={0}
     layout="alt"
     header={{
-      height: 300,
+      height: 320,
     }}
     navbar={{
       width: {
@@ -21,15 +22,13 @@ const MainLayout: FC<MainLayoutProps> = ({ children }) => (
       },
       breakpoint: 'sm',
     }}
-    bg="gray.0"
+    bg="grey.2"
   >
     <Header />
     <Navbar />
 
-    <AppShell.Main display="flex">
-      <Box flex="1 0 100%" px={90} pt="md" pb={82}>
-        {children}
-      </Box>
+    <AppShell.Main>
+      <Container pb={82}>{children}</Container>
     </AppShell.Main>
   </AppShell>
 );

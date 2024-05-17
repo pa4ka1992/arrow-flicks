@@ -9,7 +9,7 @@ const GenresSelect: FC = () => {
   const form = useFilterFormContext();
   const { data } = tmdbApi.useGetMoviesGenres();
 
-  const genresOptions = useMemo(() => data?.genres.map(({ name }) => name), [data]);
+  const genresOptions = useMemo(() => data?.genres.map(({ name, id }) => ({ label: name, value: String(id) })), [data]);
 
   return (
     <MultiSelect

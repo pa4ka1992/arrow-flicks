@@ -3,21 +3,27 @@ import { QuerySeparator, SearchQueryForm } from 'app-types';
 
 type ParseSearchParams = (params: ReadonlyURLSearchParams) => SearchQueryForm;
 
+const getArrayQuery = (array: string) => array.split(QuerySeparator.OR);
+
 export const parseSearchParams: ParseSearchParams = (params) => {
   const initialValues: any = { vote_average: {} };
 
   params.forEach((value, key) => {
+    if (key === 'page') {
+      return;
+    }
+
     if (key === 'with_genres') {
-      const genresArray = value.split(QuerySeparator.OR);
+      const genresArray = getArrayQuery(value);
 
       initialValues[key] = genresArray;
       return;
     }
 
     if (key === 'primary_release_year') {
-      const yearArray = value.split(QuerySeparator.OR);
+      const yearArray = getArrayQuery(value);
 
-      initialValues[key] = yearArray.map((year) => new Date(`01.01.${year}`));
+      initialValues[key] = yearArray.map((year) => new Date(String(year)));
       return;
     }
 

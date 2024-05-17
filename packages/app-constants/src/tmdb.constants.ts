@@ -1,6 +1,14 @@
 import { MovieSort } from 'app-types';
 
-export const SEARCH_SORT_OPTIONS = [
+export const TMDB_DEFAULT_PAGE = 1;
+
+export const TMDB_MAX_PAGE_LIMIT = 500;
+
+export const TMDB_DEFAULT_SORT = MovieSort.POPULARITY_DESC;
+
+export const TMDB_MAX_RATING = 10;
+
+export const TMDB_SEARCH_SORT_OPTIONS = [
   {
     value: MovieSort.TITLE_ASC,
     label: 'From A to Z',
@@ -11,42 +19,42 @@ export const SEARCH_SORT_OPTIONS = [
   },
   {
     value: MovieSort.POPULARITY_ASC,
-    label: 'Most popular',
-  },
-  {
-    value: MovieSort.POPULARITY_DESC,
     label: 'Least popular',
   },
   {
-    value: MovieSort.RELEASE_DATE_ASC,
-    label: 'Latest release',
+    value: MovieSort.POPULARITY_DESC,
+    label: 'Most popular',
   },
   {
-    value: MovieSort.RELEASE_DATE_DESC,
+    value: MovieSort.RELEASE_DATE_ASC,
     label: 'Earliest release',
   },
   {
-    value: MovieSort.REVENUE_ASC,
-    label: 'Highest grosser',
+    value: MovieSort.RELEASE_DATE_DESC,
+    label: 'Latest release',
   },
   {
-    value: MovieSort.REVENUE_DESC,
+    value: MovieSort.REVENUE_ASC,
     label: 'Lowest grosser',
   },
   {
-    value: MovieSort.VOTE_COUNT_ASC,
-    label: 'Most voted',
+    value: MovieSort.REVENUE_DESC,
+    label: 'Highest grosser',
   },
   {
-    value: MovieSort.VOTE_COUNT_DESC,
+    value: MovieSort.VOTE_COUNT_ASC,
     label: 'Least voted',
   },
   {
+    value: MovieSort.VOTE_COUNT_DESC,
+    label: 'Most voted',
+  },
+  {
     value: MovieSort.VOTE_AVERAGE_ASC,
-    label: 'Highest rating',
+    label: 'Lowest rating',
   },
   {
     value: MovieSort.VOTE_AVERAGE_DESC,
-    label: 'Lowest rating',
+    label: 'Highest rating',
   },
 ];

@@ -3,9 +3,10 @@ import z from 'zod';
 
 import { searchQuerySchema } from 'schemas';
 
-interface Movie {
+export interface Movie {
+  id: number;
   original_title: string;
-  poster_path: string;
+  poster_path?: string;
   release_date: string;
   vote_average: number;
   vote_count: number;
@@ -13,6 +14,12 @@ interface Movie {
 
 export interface MovieGenre {
   id: number;
+  name: string;
+}
+
+export interface ProductionCompany {
+  id: number;
+  logo_path: string;
   name: string;
 }
 
@@ -44,7 +51,7 @@ export interface DetailedMovie extends Movie {
   revenue: number;
   genres: MovieGenre[];
   overview: string;
-  production_companies: string;
+  production_companies: ProductionCompany[];
   videos: {
     results: MovieTrailer[];
   };
@@ -53,8 +60,8 @@ export interface DetailedMovie extends Movie {
 export type SearchQuery = z.infer<typeof searchQuerySchema>;
 
 type VoteAverage = {
-  lte?: string | number;
-  gte?: string | number;
+  lte?: '' | number;
+  gte?: '' | number;
 };
 
 export type SearchQueryForm = {

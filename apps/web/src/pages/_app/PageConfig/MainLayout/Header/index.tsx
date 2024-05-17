@@ -3,13 +3,17 @@ import { AppShell, Title } from '@mantine/core';
 
 import { MoviesFilter } from 'components';
 
-const Header: FC = () => (
-  <AppShell.Header px={90} pt={40} bg="transparent" withBorder={false}>
-    <Title mb={40} fw={700} order={1}>
-      Movies
-    </Title>
+import Container from '../Container';
 
-    <MoviesFilter />
+const Header: FC = () => (
+  <AppShell.Header pt={40} bg="grey.2" withBorder={false}>
+    <Container>
+      <Title mb={40} fw={700} order={1}>
+        Movies
+      </Title>
+
+      <MoviesFilter />
+    </Container>
   </AppShell.Header>
 );
 

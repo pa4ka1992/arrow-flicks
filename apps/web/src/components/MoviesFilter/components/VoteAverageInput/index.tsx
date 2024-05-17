@@ -1,6 +1,8 @@
 import React, { FC } from 'react';
 import { NumberInput } from '@mantine/core';
 
+import { TMDB_MAX_RATING } from 'app-constants';
+
 import { useFilterFormContext } from '../../form.context';
 
 interface VoteAverageInputProps {
@@ -17,7 +19,7 @@ const VoteAverageInput: FC<VoteAverageInputProps> = ({ placeholder, formKey, lab
       allowNegative={false}
       clampBehavior="strict"
       key={form.key(formKey)}
-      max={10}
+      max={TMDB_MAX_RATING}
       {...{ placeholder, label }}
       {...form.getInputProps(formKey)}
     />
