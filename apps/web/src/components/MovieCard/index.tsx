@@ -1,37 +1,32 @@
 import React, { ReactNode } from 'react';
-import { Card, Grid, Group, Image, Stack } from '@mantine/core';
+import { Box, Card, Group, MantineStyleProps, Stack } from '@mantine/core';
 import { Movie } from 'app-types';
 
-import config from 'config';
+import { DetailedInfo, GeneralInfo, Header, Poster } from './components';
+import { MovieCardVariant } from './constants';
 
-import NoPoster from '../NoPoster';
-import { GeneralInfo, Header } from './components';
+import classes from './index.module.css';
 
-interface MovieCardProps {
+interface MovieCardProps extends MantineStyleProps {
   movie: Movie;
   children: ReactNode;
+  variant?: `${MovieCardVariant}`;
 }
 
-const MovieCard = ({ movie, children }: MovieCardProps) => {
-  const { poster_path } = movie;
-
-  const poster = poster_path ? (
-    <Image src={`${config.TMDB_URL}/${poster_path}`} height={170} alt="movie poster" />
-  ) : (
-    <NoPoster />
-  );
+const MovieCard = ({ movie, children, variant = 'list', ...mantineProps }: MovieCardProps) => {
+  const { id, poster_path } = movie;
 
   return (
-    <Card mih={218} h="100%">
-      <Group align="flex-start" h="100%" gap="sm" grow wrap="nowrap">
-        {poster}
+    <Card h="100%">
+      <Group align="flex-start" gap="sm" wrap="nowrap" {...mantineProps}>
+        <Poster movieId={id} path={poster_path} {...{ variant }} />
 
-        <Stack gap="sm" h="100%" justify="space-between" maw="100%">
+        <Stack flex="1 1 100%" gap={0} justify="space-between" mih="inherit" maw="100%">
           <Header {...movie} />
 
-          <Grid fz="sm" gutter="xs">
+          <Box className={classes.info} display="grid" fz="sm" mt="lg">
             {children}
-          </Grid>
+          </Box>
         </Stack>
       </Group>
     </Card>
@@ -39,5 +34,6 @@ const MovieCard = ({ movie, children }: MovieCardProps) => {
 };
 
 MovieCard.GeneralInfo = GeneralInfo;
+MovieCard.DetailedInfo = DetailedInfo;
 
 export default MovieCard;

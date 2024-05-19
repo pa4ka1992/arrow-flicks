@@ -3,11 +3,14 @@ export enum ScopeType {
 }
 
 export enum LayoutType {
-  MAIN = 'MAIN',
+  HOME = 'HOME',
+  MOVIE = 'MOVIE',
+  RATED = 'RATED',
 }
 
 export enum RoutePath {
   Home = '/',
+  Movie = '/movie/[id]',
   Rated = '/rated',
 
   NotFound = '/404',
@@ -23,11 +26,16 @@ type RoutesConfiguration = {
 export const routesConfiguration: RoutesConfiguration = {
   [RoutePath.Home]: {
     scope: ScopeType.PUBLIC,
-    layout: LayoutType.MAIN,
+    layout: LayoutType.HOME,
   },
   [RoutePath.Rated]: {
     scope: ScopeType.PUBLIC,
-    layout: LayoutType.MAIN,
+    layout: LayoutType.RATED,
+  },
+
+  [RoutePath.Movie]: {
+    scope: ScopeType.PUBLIC,
+    layout: LayoutType.MOVIE,
   },
 
   [RoutePath.NotFound]: {},

@@ -7,7 +7,7 @@ import { RoutePath } from 'routes';
 
 const Navbar: FC = () => {
   const { route } = useRouter();
-  const isHomePage = route === RoutePath.Home;
+  const isRatedPage = route === RoutePath.Rated;
 
   return (
     <AppShell.Navbar bg="purple.0" p="lg" withBorder={false}>
@@ -27,8 +27,8 @@ const Navbar: FC = () => {
       />
 
       <Stack gap="sm" mt={80}>
-        <NavLink active={isHomePage} component={Link} href={RoutePath.Home} label="Movies" />
-        <NavLink active={!isHomePage} component={Link} href={RoutePath.Rated} label="Rated movies" />
+        <NavLink active={!isRatedPage} component={Link} href={RoutePath.Home} label="Movies" />
+        <NavLink active={isRatedPage} component={Link} href={RoutePath.Rated} label="Rated movies" />
       </Stack>
     </AppShell.Navbar>
   );

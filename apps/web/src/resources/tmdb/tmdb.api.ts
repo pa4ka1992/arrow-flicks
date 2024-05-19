@@ -11,10 +11,11 @@ export const useSearchMovies = <T extends URLSearchParams>(params: T, enabled: b
     enabled,
   });
 
-export const useGetMovieDetail = <T>(params: T) =>
+export const useGetMovieDetail = <T extends { movieId?: string | string[] }>(params: T) =>
   useQuery<DetailedMovie>({
     queryKey: ['movie', params],
     queryFn: () => apiService.get('/movies/get-movie-details', params),
+    enabled: !!params?.movieId,
   });
 
 export const useGetMoviesGenres = () =>

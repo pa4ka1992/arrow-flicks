@@ -1,0 +1,5 @@
+.info {
+  grid-template-columns: min-content auto;
+  column-gap: var(--mantine-spacing-xs);
+  row-gap: var(--mantine-spacing-xs);
+}
