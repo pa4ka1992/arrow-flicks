@@ -1,0 +1,10 @@
+.inner {
+  top: 60px;
+  margin-right: 10px;
+}
+
+.content {
+  background-color: var(--mantine-primary-color-2);
+  box-shadow: none;
+  height: auto;
+}

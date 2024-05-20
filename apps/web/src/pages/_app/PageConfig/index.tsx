@@ -3,15 +3,14 @@ import { useRouter } from 'next/router';
 
 import { LayoutType, RoutePath, routesConfiguration } from 'routes';
 
-import HomeLayout from './HomeLayout';
-import MovieLayout from './MovieLayout';
+import MainLayout from './MainLayout';
 
 import 'resources/user/user.handlers';
 
 const layoutToComponent = {
-  [LayoutType.HOME]: HomeLayout,
-  [LayoutType.RATED]: HomeLayout,
-  [LayoutType.MOVIE]: MovieLayout,
+  [LayoutType.HOME]: MainLayout,
+  [LayoutType.RATED]: MainLayout,
+  [LayoutType.MOVIE]: MainLayout,
 };
 
 interface PageConfigProps {

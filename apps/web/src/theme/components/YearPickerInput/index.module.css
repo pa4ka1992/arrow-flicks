@@ -1,9 +1,9 @@
-label.label {
+.label {
   font-weight: 700;
   padding-bottom: 8px;
 }
 
-button.input {
+.input {
   font-size: var(--mantine-font-size-xs);
   height: var(--input-height-md);
 }

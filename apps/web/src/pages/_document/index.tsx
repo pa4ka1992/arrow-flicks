@@ -5,10 +5,10 @@ import { ColorSchemeScript } from '@mantine/core';
 const Document = () => (
   <Html>
     <Head>
-      <link rel="icon" href="/favicon.ico" />
+      <link rel="icon" href="/images/logo.svg" />
       <ColorSchemeScript defaultColorScheme="auto" />
     </Head>
-    <body>
+    <body style={{ backgroundColor: 'var(--mantine-color-grey-1)' }}>
       <Main />
       <NextScript />
     </body>
