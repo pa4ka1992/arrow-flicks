@@ -1,27 +1,19 @@
 import React, { FC, useLayoutEffect, useRef, useState } from 'react';
 import { useSearchParams } from 'next/navigation';
 import { useRouter } from 'next/router';
-import { Button, Group } from '@mantine/core';
-import { FormName, SearchQueryForm, StorageKey } from 'app-types';
+import { Button, Flex, Group } from '@mantine/core';
+import { FormName, StorageKey } from 'app-types';
 
 import { tmdbApi } from 'resources/tmdb';
 
 import { debouce } from 'utils';
 
-import { TMDB_DEFAULT_SORT } from 'app-constants';
-
 import { GenresSelect, ReleaseYearSelect, SortSelect, VoteAverageInput } from './components';
+import { DEBOUNCE_TIME, INITIAL_VALUES } from './constants';
 import { FilterFormProvider, useFilterForm } from './form.context';
 import { parseSearchParams, stringifySearchParams } from './utils';
 
-const INITIAL_VALUES: SearchQueryForm = {
-  with_genres: undefined,
-  primary_release_year: undefined,
-  vote_average: {},
-  sort_by: TMDB_DEFAULT_SORT,
-};
-
-const DEBOUNCE_TIME = 300;
+import classes from './index.module.css';
 
 const MoviesFilter: FC = () => {
   const router = useRouter();
@@ -72,29 +64,33 @@ const MoviesFilter: FC = () => {
   return (
     <FilterFormProvider form={form}>
       <form>
-        <Group align="flex-end" gap="sm" grow wrap="nowrap">
-          <GenresSelect formIsReady={isInitialQueryApplied} />
-          <ReleaseYearSelect />
-          <Group align="flex-end" wrap="nowrap" gap={8}>
-            <VoteAverageInput label="Ratings" placeholder="From" formKey="vote_average.gte" />
-            <VoteAverageInput placeholder="To" formKey="vote_average.lte" />
+        <Flex className={classes.filter} pos="relative" align="flex-start" gap="sm">
+          <Group gap="sm" grow wrap="wrap" style={{ flexGrow: 1 }} maw={{ base: 284, sm: 586 }}>
+            <GenresSelect formIsReady={isInitialQueryApplied} />
+            <ReleaseYearSelect />
           </Group>
 
-          <Button
-            disabled={isResetDisabled}
-            flex="0 0 auto"
-            p={0}
-            onClick={resetForm}
-            type="reset"
-            variant="transparent"
-          >
-            Reset filters
-          </Button>
-        </Group>
+          <Flex gap="sm" direction="column" style={{ flexGrow: 1 }} maw={381}>
+            <Group align="flex-end" wrap="nowrap" gap={8} grow>
+              <VoteAverageInput label="Ratings" placeholder="From" formKey="vote_average.gte" />
+              <VoteAverageInput placeholder="To" formKey="vote_average.lte" />
 
-        <Group mt="lg" justify="flex-end">
-          <SortSelect />
-        </Group>
+              <Button
+                className={classes.reset}
+                disabled={isResetDisabled}
+                flex="0 0 auto"
+                p={0}
+                onClick={resetForm}
+                type="reset"
+                variant="transparent"
+              >
+                Reset filters
+              </Button>
+            </Group>
+
+            <SortSelect />
+          </Flex>
+        </Flex>
       </form>
     </FilterFormProvider>
   );

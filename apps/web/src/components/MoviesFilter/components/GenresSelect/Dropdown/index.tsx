@@ -19,7 +19,7 @@ const Dropdown: FC<DropdownProps> = ({ genresId }) => {
       }}
     >
       <Combobox.Options>
-        <ScrollArea.Autosize mah={220} type="always" scrollbarSize={6}>
+        <ScrollArea.Autosize offsetScrollbars mah={220} type="always" scrollbarSize={4}>
           {result?.genres.map(({ id, name }) => (
             <Combobox.Option
               active={genresId.includes(`${id}`)}

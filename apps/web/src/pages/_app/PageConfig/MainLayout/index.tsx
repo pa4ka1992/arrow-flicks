@@ -30,7 +30,9 @@ const MainLayout: FC<MainLayoutProps> = ({ children }) => (
     <Header />
     <Navbar />
 
-    <AppShell.Main>{children}</AppShell.Main>
+    <AppShell.Main pt={40} pb={82}>
+      {children}
+    </AppShell.Main>
   </AppShell>
 );
 

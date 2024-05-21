@@ -30,3 +30,7 @@
     background-color: var(--mantine-primary-color-6);
   }
 }
+
+.dropdown {
+  border-radius: var(--mantine-radius-md);
+}

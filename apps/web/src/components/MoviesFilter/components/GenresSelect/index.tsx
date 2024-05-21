@@ -77,23 +77,25 @@ export const GenresSelect: FC<GenresSelectProps> = ({ formIsReady }) => {
   }, [formIsReady]);
 
   return (
-    <Combobox store={combobox} onOptionSubmit={selectOption} withinPortal={false}>
+    <Combobox onOptionSubmit={selectOption} store={combobox} withinPortal={false}>
       <Combobox.DropdownTarget>
         <PillsInput
-          data-expanded={combobox.dropdownOpened}
           classNames={{
             label: classes.label,
             input: classes.input,
             section: classes.section,
           }}
+          data-expanded={combobox.dropdownOpened}
           label="Genres"
+          maw={284}
+          miw={200}
+          pointer
+          onClick={() => combobox.toggleDropdown()}
           size="md"
           radius="md"
           rightSection={<IconChevronDown stroke={1.2} />}
           rightSectionWidth={34}
           rightSectionPointerEvents="none"
-          pointer
-          onClick={() => combobox.toggleDropdown()}
         >
           <Pill.Group fz="xs" lh={1.8}>
             {inputView}

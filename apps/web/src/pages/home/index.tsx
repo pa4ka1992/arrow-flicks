@@ -2,7 +2,7 @@ import React from 'react';
 import { NextPage } from 'next';
 import { useSearchParams } from 'next/navigation';
 import { useRouter } from 'next/router';
-import { Container, Grid, Stack, Title } from '@mantine/core';
+import { Box, Container, Grid, Stack, Title } from '@mantine/core';
 
 import { tmdbApi } from 'resources/tmdb';
 
@@ -14,12 +14,14 @@ const Home: NextPage = () => {
   const { data: movieSearch } = tmdbApi.useSearchMovies(params, router.isReady);
 
   return (
-    <Container size={1020}>
-      <Title mb={40} fw={700} order={1}>
-        Movies
-      </Title>
+    <Container pos="relative" size={1020}>
+      <Box bg="grey.0" pt={{ base: 30, lg: 0 }} pb="lg" top={0} style={{ zIndex: 1 }}>
+        <Title mb={40} fw={700} order={1}>
+          Movies
+        </Title>
 
-      <MoviesFilter />
+        <MoviesFilter />
+      </Box>
 
       <Stack gap="lg">
         <Grid gutter="sm">

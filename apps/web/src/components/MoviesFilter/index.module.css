@@ -1,0 +1,15 @@
+.filter {
+  @media screen and (max-width: 500px) {
+    flex-wrap: wrap;
+  }
+}
+
+.reset {
+  min-width: 100px;
+
+  @media screen and (max-width: $mantine-breakpoint-md) {
+    position: absolute;
+    right: 0;
+    top: -6px;
+  }
+}

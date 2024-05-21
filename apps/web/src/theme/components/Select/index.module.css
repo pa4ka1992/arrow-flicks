@@ -33,3 +33,9 @@
     background-color: var(--mantine-primary-color-6);
   }
 }
+
+.dropdown,
+.option {
+  border-radius: var(--mantine-radius-md);
+  font-size: var(--mantine-font-size-xs);
+}

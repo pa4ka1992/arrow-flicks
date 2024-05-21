@@ -1,6 +1,7 @@
 .option,
 .dropdown {
   border-radius: var(--mantine-radius-md);
+  max-width: 100%;
 }
 
 .option {

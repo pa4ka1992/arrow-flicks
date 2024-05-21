@@ -20,8 +20,8 @@ const VoteAverageInput: FC<VoteAverageInputProps> = ({ placeholder, formKey, lab
       clampBehavior="strict"
       key={form.key(formKey)}
       max={TMDB_MAX_RATING}
-      maw={139}
       miw={100}
+      maw={140}
       {...{ placeholder, label }}
       {...form.getInputProps(formKey)}
     />

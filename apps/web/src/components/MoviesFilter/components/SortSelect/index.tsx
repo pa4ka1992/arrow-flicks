@@ -11,8 +11,13 @@ const SortSelect: FC = () => {
   return (
     <Select
       data={TMDB_SEARCH_SORT_OPTIONS}
+      flex={1}
       key={form.key('sort_by')}
       label="Sort by"
+      ml={{ base: 0, md: 'auto' }}
+      mr={0}
+      miw={{ base: 200, md: 288 }}
+      maw={288}
       {...form.getInputProps('sort_by')}
     />
   );
