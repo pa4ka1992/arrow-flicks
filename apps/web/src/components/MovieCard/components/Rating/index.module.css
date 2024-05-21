@@ -1,0 +1,9 @@
+.rating {
+  width: 26px;
+  height: 26px;
+
+  @media screen and (max-width: $mantine-breakpoint-sm) {
+    width: 23px;
+    height: 23px;
+  }
+}

@@ -6,12 +6,14 @@ import { Movie } from 'app-types';
 
 import { TMDB_MAX_RATING } from 'app-constants';
 
+import classes from './index.module.css';
+
 interface RatingProps {
-  id: Movie['id'];
+  movieId: Movie['id'];
   title: Movie['original_title'];
 }
 
-const Rating: FC<RatingProps> = ({ id, title }) => {
+const Rating: FC<RatingProps> = ({ movieId, title }) => {
   const [opened, { open, close }] = useDisclosure(false);
   const [rating, setRating] = useState(0);
 
@@ -25,7 +27,7 @@ const Rating: FC<RatingProps> = ({ id, title }) => {
         <Stack gap="sm">
           <Title order={4}>
             {title}
-            {id}
+            {movieId}
           </Title>
 
           <MantineRating count={TMDB_MAX_RATING} onChange={updateRating} value={rating} />
@@ -40,7 +42,7 @@ const Rating: FC<RatingProps> = ({ id, title }) => {
       </Modal>
 
       <ActionIcon c="grey.4" variant="transparent" onClick={open} aria-label="Rating">
-        <IconStarFilled width={26} height={26} />
+        <IconStarFilled className={classes.rating} />
       </ActionIcon>
     </>
   );

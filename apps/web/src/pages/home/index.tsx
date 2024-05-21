@@ -26,7 +26,7 @@ const Home: NextPage = () => {
       <Stack gap="lg">
         <Grid gutter={{ base: 'xs', md: 'sm' }}>
           {movieSearch?.results?.map((movie) => (
-            <Grid.Col key={movie.id} span={6}>
+            <Grid.Col key={movie.id} span={{ base: 12, xs: 6 }}>
               <MovieCard mih={170} {...{ movie }}>
                 <MovieCard.GeneralInfo genres={movie.genre_ids} />
               </MovieCard>

@@ -12,20 +12,20 @@ import Navigation from '../Navigation';
 import classes from './index.module.css';
 
 const Logo: FC<NavLinkProps> = ({ ...navlinkProps }) => {
-  const xs = useMediaQuery('(max-width: 36em)');
+  const sm = useMediaQuery('(max-width: 48em)');
   const [opened, { toggle, close }] = useDisclosure();
   const { path } = useRestoreQuery(RoutePath.Home);
 
   useEffect(() => {
-    if (!xs) {
+    if (!sm) {
       close();
     }
-  }, [xs, close]);
+  }, [sm, close]);
 
   return (
     <>
       <Drawer
-        hiddenFrom="xs"
+        hiddenFrom="sm"
         bg="purple.3"
         classNames={{
           inner: classes.inner,
@@ -49,7 +49,7 @@ const Logo: FC<NavLinkProps> = ({ ...navlinkProps }) => {
         <Burger
           aria-label="Toggle navigation"
           color="purple.6"
-          hiddenFrom="xs"
+          hiddenFrom="sm"
           onClick={toggle}
           size="sm"
           {...{ opened }}
@@ -62,7 +62,7 @@ const Logo: FC<NavLinkProps> = ({ ...navlinkProps }) => {
           p={0}
           label={
             <Group classNames={{ root: classes.logo }} gap="sm" c="purple.6">
-              <Image h={{ base: 24, sm: 32 }} src="/images/logo.svg" visibleFrom="xs" />
+              <Image h={{ base: 24, sm: 32 }} src="/images/logo.svg" visibleFrom="sm" />
               <Title order={2} fz={{ base: 'md', sm: 'lg' }}>
                 ArrowFlicks
               </Title>

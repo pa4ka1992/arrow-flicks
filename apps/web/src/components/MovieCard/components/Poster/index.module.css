@@ -1,0 +1,8 @@
+.link {
+  flex: 0 0 100%;
+
+  @media screen and (max-width: 500px) {
+    align-self: center;
+    flex-shrink: 1;
+  }
+}

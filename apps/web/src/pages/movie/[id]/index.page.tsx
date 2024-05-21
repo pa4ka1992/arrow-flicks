@@ -12,6 +12,8 @@ import { useRestoreQuery } from 'utils';
 
 import { RoutePath } from 'routes';
 
+import classes from './index.module.css';
+
 const Movie: NextPage = () => {
   const router = useRouter();
   const { path } = useRestoreQuery(RoutePath.Home);
@@ -31,6 +33,8 @@ const Movie: NextPage = () => {
     <Container size={840}>
       <Breadcrumbs
         fz="xs"
+        mt={{ base: 'md', lg: 0 }}
+        mb="md"
         styles={{
           separator: {
             margin: '0 10px',
@@ -38,7 +42,7 @@ const Movie: NextPage = () => {
         }}
       >
         {breadcrumbs.map(({ title, href }) => (
-          <Anchor fz="xs" component={Link} {...{ href }} key={href}>
+          <Anchor className={classes.anchor} fz="xs" component={Link} {...{ href }} key={href}>
             {title}
           </Anchor>
         ))}

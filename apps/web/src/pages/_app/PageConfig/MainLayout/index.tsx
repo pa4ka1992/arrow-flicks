@@ -21,7 +21,7 @@ const MainLayout: FC<MainLayoutProps> = ({ children }) => (
     }}
     navbar={{
       width: {
-        base: 52,
+        base: 0,
         sm: 60,
         lg: 280,
       },

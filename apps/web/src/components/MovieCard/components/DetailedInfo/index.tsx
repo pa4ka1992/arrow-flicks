@@ -39,10 +39,10 @@ const DetailedInfo: FC<DetailedInfoProps> = ({ movie: { runtime, release_date, r
         ({ title, value }) =>
           !!value && (
             <Fragment key={title}>
-              <Text c="grey.6" fz="sm" pr="xs" style={{ whiteSpace: 'nowrap' }}>
+              <Text c="grey.6" fz={{ base: 'xs', md: 'sm' }} pr="xs" style={{ whiteSpace: 'nowrap' }}>
                 {title}
               </Text>
-              <Text fz="sm">{value}</Text>
+              <Text fz={{ base: 'xs', md: 'sm' }}>{value}</Text>
             </Fragment>
           ),
       )}

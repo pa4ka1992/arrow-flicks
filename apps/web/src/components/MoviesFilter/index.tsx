@@ -70,7 +70,7 @@ const MoviesFilter: FC = () => {
             <ReleaseYearSelect />
           </Group>
 
-          <Flex className={classes.filterGroup} direction="column" style={{ flexGrow: 1 }} maw={381}>
+          <Flex className={classes.filterGroup} direction="column" style={{ flexGrow: 1 }} maw={{ base: 288, md: 381 }}>
             <Group align="flex-end" wrap="nowrap" gap={8} grow>
               <VoteAverageInput label="Ratings" placeholder="From" formKey="vote_average.gte" />
               <VoteAverageInput placeholder="To" formKey="vote_average.lte" />

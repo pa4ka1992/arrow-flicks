@@ -1,5 +1,32 @@
+.infoBox {
+  @media screen and (max-width: 500px) {
+    flex-direction: column;
+  }
+}
+
 .info {
   grid-template-columns: min-content auto;
   column-gap: var(--mantine-spacing-xs);
   row-gap: var(--mantine-spacing-xs);
+
+  @media screen and (max-width: 700px) {
+    grid-template-columns: 1fr;
+    row-gap: 4px;
+  }
+}
+
+.statistics {
+  @media screen and (max-width: $mantine-breakpoint-sm) {
+    flex-direction: row;
+  }
+}
+
+.rating {
+  width: 26px;
+  height: 26px;
+
+  @media screen and (max-width: $mantine-breakpoint-sm) {
+    width: 23px;
+    height: 23px;
+  }
 }

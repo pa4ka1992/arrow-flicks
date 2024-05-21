@@ -11,6 +11,8 @@ import config from 'config';
 import NoPoster from '../NoPoster';
 import { PosterVariant } from './constants';
 
+import classes from './index.module.css';
+
 interface PosterProps {
   movieId: Movie['id'];
   path: Movie['poster_path'];
@@ -24,9 +26,9 @@ const Poster: FC<PosterProps> = ({ movieId, path, variant }) => {
 
   return (
     <Anchor
+      className={classes.link}
       component={Link}
       display="block"
-      flex="0 0 100%"
       href={{ pathname: RoutePath.Movie, query: { id: movieId } }}
       underline="never"
       {...posterProps}
