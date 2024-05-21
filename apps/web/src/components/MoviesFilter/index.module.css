@@ -1,7 +1,18 @@
 .filter {
-  /* @media screen and (max-width: 500px) {
+  gap: var(--mantine-spacing-sm);
+
+  @media screen and (max-width: 420px) {
+    gap: 0;
     flex-wrap: wrap;
-  } */
+  }
+}
+
+.filterGroup {
+  gap: var(--mantine-spacing-sm);
+
+  @media screen and (max-width: 420px) {
+    gap: 0;
+  }
 }
 
 .reset {

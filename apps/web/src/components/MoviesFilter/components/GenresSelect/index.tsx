@@ -97,7 +97,7 @@ export const GenresSelect: FC<GenresSelectProps> = ({ formIsReady }) => {
           rightSectionWidth={34}
           rightSectionPointerEvents="none"
         >
-          <Pill.Group fz="xs" lh={{ base: 1.4, lg: 1.8 }}>
+          <Pill.Group fz="xs" lh={{ base: 1.4, md: 1.8 }}>
             {inputView}
           </Pill.Group>
         </PillsInput>

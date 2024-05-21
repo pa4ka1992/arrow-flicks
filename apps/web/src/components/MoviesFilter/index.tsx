@@ -64,13 +64,13 @@ const MoviesFilter: FC = () => {
   return (
     <FilterFormProvider form={form}>
       <form>
-        <Flex className={classes.filter} pos="relative" align="flex-start" gap="sm">
-          <Group gap="sm" grow wrap="wrap" style={{ flexGrow: 1 }} maw={{ base: 284, sm: 586 }}>
+        <Flex className={classes.filter} pos="relative" align="flex-start">
+          <Group className={classes.filterGroup} grow wrap="wrap" style={{ flexGrow: 1 }} maw={{ base: 284, sm: 586 }}>
             <GenresSelect formIsReady={isInitialQueryApplied} />
             <ReleaseYearSelect />
           </Group>
 
-          <Flex gap="sm" direction="column" style={{ flexGrow: 1 }} maw={381}>
+          <Flex className={classes.filterGroup} direction="column" style={{ flexGrow: 1 }} maw={381}>
             <Group align="flex-end" wrap="nowrap" gap={8} grow>
               <VoteAverageInput label="Ratings" placeholder="From" formKey="vote_average.gte" />
               <VoteAverageInput placeholder="To" formKey="vote_average.lte" />

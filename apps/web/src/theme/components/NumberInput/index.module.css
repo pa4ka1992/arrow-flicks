@@ -17,21 +17,23 @@
   }
 }
 
-.section {
-  & > div {
-    flex: 1 0 100%;
-    max-width: none;
-    margin-left: 0;
-    margin-right: 5px;
+.controls {
+  flex: 1 0 100%;
+  max-width: none;
+  margin-left: 0;
+  margin-right: 5px;
+
+  @media screen and (max-width: $mantine-breakpoint-md) {
+    height: 28px;
   }
+}
 
-  button[type='button'] {
-    color: var(--mantine-color-dimmed);
-    border: none;
+.control {
+  color: var(--mantine-color-dimmed);
+  border: none;
 
-    &:hover {
-      color: var(--mantine-primary-color-6);
-      background-color: var(--mantine-primary-color-0);
-    }
+  &:hover {
+    color: var(--mantine-primary-color-6);
+    background-color: var(--mantine-primary-color-0);
   }
 }
