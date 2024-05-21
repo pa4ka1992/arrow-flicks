@@ -2,12 +2,21 @@
   padding-bottom: 8px;
   font-size: var(--mantine-font-size-sm);
   font-weight: 700;
+
+  @media screen and (max-width: $mantine-breakpoint-xs) {
+    font-size: var(--mantine-font-size-xs);
+    padding-bottom: 4px;
+  }
 }
 
 .input {
   &[data-expanded='true'] + [data-position='right'] {
     color: var(--mantine-primary-color-6);
     transform: rotate(180deg);
+  }
+
+  @media screen and (max-width: $mantine-breakpoint-md) {
+    min-height: var(--input-height-sm);
   }
 }
 

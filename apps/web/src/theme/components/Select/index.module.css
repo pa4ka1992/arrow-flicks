@@ -1,6 +1,11 @@
 .label {
   font-weight: 700;
   padding-bottom: 8px;
+
+  @media screen and (max-width: $mantine-breakpoint-xs) {
+    font-size: var(--mantine-font-size-xs);
+    padding-bottom: 4px;
+  }
 }
 
 .input {
@@ -10,6 +15,10 @@
   &[data-expanded] + [data-position='right'] {
     color: var(--mantine-primary-color-6);
     transform: rotate(180deg);
+  }
+
+  @media screen and (max-width: $mantine-breakpoint-md) {
+    height: var(--input-height-sm);
   }
 }
 

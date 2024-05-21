@@ -1,11 +1,20 @@
 .label {
   font-weight: 700;
   padding-bottom: 8px;
+
+  @media screen and (max-width: $mantine-breakpoint-xs) {
+    font-size: var(--mantine-font-size-xs);
+    padding-bottom: 4px;
+  }
 }
 
 .input {
   font-size: var(--mantine-font-size-xs);
   height: var(--input-height-md);
+
+  @media screen and (max-width: $mantine-breakpoint-md) {
+    height: var(--input-height-sm);
+  }
 }
 
 .section {

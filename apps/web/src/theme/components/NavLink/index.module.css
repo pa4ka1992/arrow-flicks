@@ -15,3 +15,10 @@
     background: transparent;
   }
 }
+
+.root,
+.label {
+  @media screen and (max-width: $mantine-breakpoint-sm) {
+    font-size: var(--mantine-font-size-sm);
+  }
+}

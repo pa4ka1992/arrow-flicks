@@ -88,7 +88,7 @@ export const GenresSelect: FC<GenresSelectProps> = ({ formIsReady }) => {
           data-expanded={combobox.dropdownOpened}
           label="Genres"
           maw={284}
-          miw={200}
+          miw={180}
           pointer
           onClick={() => combobox.toggleDropdown()}
           size="md"
@@ -97,7 +97,7 @@ export const GenresSelect: FC<GenresSelectProps> = ({ formIsReady }) => {
           rightSectionWidth={34}
           rightSectionPointerEvents="none"
         >
-          <Pill.Group fz="xs" lh={1.8}>
+          <Pill.Group fz="xs" lh={{ base: 1.4, lg: 1.8 }}>
             {inputView}
           </Pill.Group>
         </PillsInput>

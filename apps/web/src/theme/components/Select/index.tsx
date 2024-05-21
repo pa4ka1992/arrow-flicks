@@ -8,6 +8,7 @@ export default Select.extend({
   defaultProps: {
     radius: 'md',
     rightSection: <IconChevronDown stroke={1.2} />,
+    size: 'sm',
   },
   classNames: classes,
 });

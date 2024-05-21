@@ -14,9 +14,9 @@ const Home: NextPage = () => {
   const { data: movieSearch } = tmdbApi.useSearchMovies(params, router.isReady);
 
   return (
-    <Container p={{ base: 'xs', md: 'md' }} pos="relative" size={1020}>
-      <Box bg="grey.0" pt={{ base: 30, lg: 0 }} pb="lg" top={0} style={{ zIndex: 1 }}>
-        <Title mb={40} fw={700} order={1}>
+    <Container px={{ base: 'xs', md: 'md' }} pos="relative" size={1020}>
+      <Box bg="grey.0" pt={{ base: 'xs', lg: 0 }} pb={{ base: 'xs', lg: 'lg' }}>
+        <Title mb={{ base: 'sm', xs: 'md', lg: 40 }} fz={{ base: 'md', sm: 'lg', lg: 'xl' }} fw={700} order={1}>
           Movies
         </Title>
 

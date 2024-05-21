@@ -16,7 +16,7 @@ const SortSelect: FC = () => {
       label="Sort by"
       ml={{ base: 0, md: 'auto' }}
       mr={0}
-      miw={{ base: 200, md: 288 }}
+      miw={{ base: 180, md: 288 }}
       maw={288}
       {...form.getInputProps('sort_by')}
     />
