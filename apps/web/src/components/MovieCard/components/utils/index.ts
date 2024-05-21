@@ -1,1 +1,1 @@
-export * from './getGenres';
+export * from './get-genres.util';
