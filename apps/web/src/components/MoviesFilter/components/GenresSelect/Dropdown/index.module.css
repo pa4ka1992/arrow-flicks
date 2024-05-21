@@ -1,0 +1,17 @@
+.option,
+.dropdown {
+  border-radius: var(--mantine-radius-md);
+}
+
+.option {
+  transition: background-color 0.2s;
+
+  &:hover {
+    background-color: var(--mantine-primary-color-1);
+  }
+
+  &[data-combobox-active] {
+    color: var(--mantine-color-white);
+    background-color: var(--mantine-primary-color-6);
+  }
+}

@@ -2,7 +2,7 @@ import React, { FC, useLayoutEffect, useRef, useState } from 'react';
 import { useSearchParams } from 'next/navigation';
 import { useRouter } from 'next/router';
 import { Button, Group } from '@mantine/core';
-import { FormName, SearchQueryForm } from 'app-types';
+import { FormName, SearchQueryForm, StorageKey } from 'app-types';
 
 import { tmdbApi } from 'resources/tmdb';
 
@@ -27,7 +27,7 @@ const MoviesFilter: FC = () => {
   const router = useRouter();
   const searchParams = useSearchParams();
   const timer = useRef<ReturnType<typeof setTimeout>>();
-  const [initialQueryApplied, setInitialQueryApplied] = useState(false);
+  const [isInitialQueryApplied, setIsInitialQueryApplied] = useState(false);
 
   const { isSuccess: isGenresSuccess } = tmdbApi.useGetMoviesGenres();
 
@@ -44,6 +44,7 @@ const MoviesFilter: FC = () => {
       if (form.isTouched()) {
         const queryString = stringifySearchParams(values);
 
+        localStorage.setItem(StorageKey.FILTER, queryString.toString());
         applyQueries(queryString);
       }
     },
@@ -51,32 +52,42 @@ const MoviesFilter: FC = () => {
 
   const isResetDisabled = !form.isDirty();
 
-  const resetForm = () => form.reset();
+  const resetForm = () => {
+    form.reset();
+    localStorage.removeItem(StorageKey.FILTER);
+  };
 
   useLayoutEffect(() => {
-    if (initialQueryApplied) {
+    if (isInitialQueryApplied) {
       return;
     }
 
     if (router.isReady && isGenresSuccess) {
       form.setValues(parseSearchParams(searchParams));
 
-      setInitialQueryApplied(true);
+      setIsInitialQueryApplied(true);
     }
-  }, [form, searchParams, isGenresSuccess, router, initialQueryApplied]);
+  }, [form, searchParams, isGenresSuccess, router, isInitialQueryApplied]);
 
   return (
     <FilterFormProvider form={form}>
       <form>
-        <Group align="flex-end" wrap="nowrap" gap="sm">
-          <GenresSelect />
+        <Group align="flex-end" gap="sm" grow wrap="nowrap">
+          <GenresSelect formIsReady={isInitialQueryApplied} />
           <ReleaseYearSelect />
           <Group align="flex-end" wrap="nowrap" gap={8}>
             <VoteAverageInput label="Ratings" placeholder="From" formKey="vote_average.gte" />
             <VoteAverageInput placeholder="To" formKey="vote_average.lte" />
           </Group>
 
-          <Button disabled={isResetDisabled} p={0} onClick={resetForm} type="reset" variant="transparent">
+          <Button
+            disabled={isResetDisabled}
+            flex="0 0 auto"
+            p={0}
+            onClick={resetForm}
+            type="reset"
+            variant="transparent"
+          >
             Reset filters
           </Button>
         </Group>

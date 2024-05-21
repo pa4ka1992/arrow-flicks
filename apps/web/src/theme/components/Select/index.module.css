@@ -6,4 +6,30 @@
 .input {
   font-size: var(--mantine-font-size-xs);
   height: var(--input-height-md);
+
+  &[data-expanded] + [data-position='right'] {
+    color: var(--mantine-primary-color-6);
+    transform: rotate(180deg);
+  }
+}
+
+.section {
+  transform: rotate(0);
+  transition: transform 0.2s;
+}
+
+.option {
+  transition: background-color 0.2s;
+  svg {
+    display: none;
+  }
+
+  &:hover {
+    background-color: var(--mantine-primary-color-1);
+  }
+
+  &[data-checked='true'] {
+    color: var(--mantine-color-white);
+    background-color: var(--mantine-primary-color-6);
+  }
 }

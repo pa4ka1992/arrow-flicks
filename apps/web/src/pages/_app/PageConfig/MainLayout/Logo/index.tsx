@@ -1,7 +1,9 @@
-import React, { FC } from 'react';
+import React, { FC, useEffect } from 'react';
 import Link from 'next/link';
 import { Burger, Drawer, Group, Image, NavLink, NavLinkProps, Title } from '@mantine/core';
-import { useDisclosure } from '@mantine/hooks';
+import { useDisclosure, useMediaQuery } from '@mantine/hooks';
+
+import { useRestoreQuery } from 'utils';
 
 import { RoutePath } from 'routes';
 
@@ -10,7 +12,15 @@ import Navigation from '../Navigation';
 import classes from './index.module.css';
 
 const Logo: FC<NavLinkProps> = ({ ...navlinkProps }) => {
-  const [opened, { toggle }] = useDisclosure();
+  const xs = useMediaQuery('(max-width: 36em)');
+  const [opened, { toggle, close }] = useDisclosure();
+  const { path } = useRestoreQuery(RoutePath.Home);
+
+  useEffect(() => {
+    if (!xs) {
+      close();
+    }
+  }, [xs, close]);
 
   return (
     <>
@@ -48,7 +58,7 @@ const Logo: FC<NavLinkProps> = ({ ...navlinkProps }) => {
         <NavLink
           data-logo
           component={Link}
-          href={RoutePath.Home}
+          href={path}
           p={0}
           label={
             <Group classNames={{ root: classes.logo }} gap="sm" c="purple.6">

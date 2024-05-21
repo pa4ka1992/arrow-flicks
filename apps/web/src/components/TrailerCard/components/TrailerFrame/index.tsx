@@ -1,5 +1,5 @@
 import React, { FC } from 'react';
-import { AspectRatio, Divider } from '@mantine/core';
+import { AspectRatio, Divider, Title } from '@mantine/core';
 import { DetailedMovie } from 'app-types';
 
 import classes from './index.module.css';
@@ -15,6 +15,10 @@ const TrailerFrame: FC<TrailerFrameProps> = ({ videos }) => {
 
   return (
     <>
+      <Title fw={700} order={3} mb="sm">
+        Trailer
+      </Title>
+
       <AspectRatio
         classNames={{
           root: classes.root,

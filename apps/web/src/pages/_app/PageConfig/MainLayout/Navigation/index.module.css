@@ -1,0 +1,7 @@
+.section {
+  margin-right: 8px;
+
+  @media screen and (min-width: $mantine-breakpoint-lg) {
+    display: none;
+  }
+}

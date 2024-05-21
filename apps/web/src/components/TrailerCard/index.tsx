@@ -8,26 +8,31 @@ interface TrailerCardProps {
   movie: DetailedMovie;
 }
 
-const TrailerCard: FC<TrailerCardProps> = ({ movie: { videos, overview, production_companies } }) => (
-  <Card>
-    <Title fw={700} order={3} mb="sm">
-      Trailer
-    </Title>
-    <TrailerFrame videos={videos} />
+const TrailerCard: FC<TrailerCardProps> = ({ movie: { videos, overview, production_companies } }) => {
+  const isCardShown = videos.results.length && overview && production_companies.length;
 
-    {!!overview && (
-      <>
-        <Title fw={700} order={3} mb="sm">
-          Description
-        </Title>
-        <Text fz="sm">{overview}</Text>
+  if (!isCardShown) {
+    return null;
+  }
 
-        <Divider my="md" />
-      </>
-    )}
+  return (
+    <Card>
+      <TrailerFrame videos={videos} />
 
-    <ProductionCompanies companies={production_companies} />
-  </Card>
-);
+      {!!overview && (
+        <>
+          <Title fw={700} order={3} mb="sm">
+            Description
+          </Title>
+          <Text fz="sm">{overview}</Text>
+
+          <Divider my="md" />
+        </>
+      )}
+
+      <ProductionCompanies companies={production_companies} />
+    </Card>
+  );
+};
 
 export default TrailerCard;

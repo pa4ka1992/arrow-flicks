@@ -7,9 +7,7 @@ export default Rating.extend({
     fractions: 2,
     size: 'lg',
   },
-  classNames: {
-    root: classes.root,
-  },
+  classNames: classes,
   vars: () => ({
     root: {
       '--rating-size': '30px',

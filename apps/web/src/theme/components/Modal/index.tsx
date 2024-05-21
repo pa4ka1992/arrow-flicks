@@ -11,10 +11,5 @@ export default Modal.extend({
       size: 'sm',
     },
   },
-  classNames: {
-    header: classes.header,
-    title: classes.title,
-    close: classes.close,
-    body: classes.body,
-  },
+  classNames: classes,
 });

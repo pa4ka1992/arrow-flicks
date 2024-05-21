@@ -8,7 +8,5 @@ export default Button.extend({
     size: 'md',
     fz: 'xs',
   },
-  classNames: {
-    root: classes.root,
-  },
+  classNames: classes,
 });

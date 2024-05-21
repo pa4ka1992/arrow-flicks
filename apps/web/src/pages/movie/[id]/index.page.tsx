@@ -8,15 +8,18 @@ import { tmdbApi } from 'resources/tmdb';
 
 import { MovieCard, TrailerCard } from 'components';
 
+import { useRestoreQuery } from 'utils';
+
 import { RoutePath } from 'routes';
 
 const Movie: NextPage = () => {
   const router = useRouter();
+  const { path } = useRestoreQuery(RoutePath.Home);
 
   const { data: movie } = tmdbApi.useGetMovieDetail({ movieId: router.query.id });
 
   const breadcrumbs = [
-    { title: 'Movies', href: RoutePath.Home },
+    { title: 'Movies', href: path },
     { title: movie?.original_title, href: '#' },
   ];
 

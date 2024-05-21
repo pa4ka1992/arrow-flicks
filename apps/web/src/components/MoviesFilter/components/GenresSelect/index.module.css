@@ -1,0 +1,17 @@
+.label {
+  padding-bottom: 8px;
+  font-size: var(--mantine-font-size-sm);
+  font-weight: 700;
+}
+
+.input {
+  &[data-expanded='true'] + [data-position='right'] {
+    color: var(--mantine-primary-color-6);
+    transform: rotate(180deg);
+  }
+}
+
+.section {
+  transform: rotate(0);
+  transition: transform 0.2s;
+}

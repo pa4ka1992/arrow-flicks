@@ -9,10 +9,5 @@ export default MultiSelect.extend({
     radius: 'md',
     rightSection: <IconChevronDown stroke={1.2} />,
   },
-  classNames: {
-    root: classes.root,
-    label: classes.label,
-    input: classes.input,
-    pillsList: classes.pillsList,
-  },
+  classNames: classes,
 });

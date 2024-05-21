@@ -13,10 +13,5 @@ export default NumberInput.extend({
     stepHoldInterval: 100,
     rightSectionWidth: 35,
   },
-  classNames: {
-    root: classes.root,
-    label: classes.label,
-    input: classes.input,
-    section: classes.section,
-  },
+  classNames: classes,
 });

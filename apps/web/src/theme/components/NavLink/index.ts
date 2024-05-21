@@ -6,8 +6,5 @@ export default NavLink.extend({
   defaultProps: {
     fz: 'sm',
   },
-  classNames: {
-    root: classes.root,
-    label: classes.label,
-  },
+  classNames: classes,
 });

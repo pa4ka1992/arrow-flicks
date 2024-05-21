@@ -23,15 +23,21 @@ const Header: FC<Movie> = ({ id, original_title, release_date, vote_average, vot
         <Rating {...{ id }} title={original_title} />
       </Group>
 
-      <Text c="grey.6" fz="sm">
-        {parseInt(release_date, 10)}
-      </Text>
+      {release_date && (
+        <Text c="grey.6" fz="sm">
+          {parseInt(release_date, 10)}
+        </Text>
+      )}
 
       <Group align="center" c="yellow.6" lh={1} gap={4}>
         <IconStarFilled width={26} height={26} />
-        <Text c="black" fw={600} fz="sm">
-          {vote_average.toFixed(1)}
-        </Text>
+
+        {vote_average && (
+          <Text c="black" fw={600} fz="sm">
+            {vote_average.toFixed(1)}
+          </Text>
+        )}
+
         <Text c="grey.6" fz="sm" pl={4}>
           ({formatter.current.format(vote_count)})
         </Text>

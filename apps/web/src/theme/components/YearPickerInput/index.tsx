@@ -8,10 +8,7 @@ export default YearPickerInput.extend({
   defaultProps: {
     radius: 'md',
     rightSection: <IconChevronDown stroke={1.2} />,
+    size: 'xs',
   },
-  classNames: {
-    root: classes.root,
-    label: classes.label,
-    input: classes.input,
-  },
+  classNames: classes,
 });

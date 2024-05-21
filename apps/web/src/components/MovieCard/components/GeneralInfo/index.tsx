@@ -13,7 +13,7 @@ interface GeneralInfoProps {
 const GeneralInfo: FC<GeneralInfoProps> = ({ genres }) => {
   const { data } = tmdbApi.useGetMoviesGenres();
 
-  const activeGenres = useMemo(() => data?.genres.filter(({ id }) => genres.includes(id)), [data, genres]);
+  const activeGenres = useMemo(() => data?.genres?.filter(({ id }) => genres?.includes(id)), [data, genres]);
 
   if (!activeGenres?.length) {
     return null;

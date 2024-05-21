@@ -9,9 +9,5 @@ export default Select.extend({
     radius: 'md',
     rightSection: <IconChevronDown stroke={1.2} />,
   },
-  classNames: {
-    root: classes.root,
-    label: classes.label,
-    input: classes.input,
-  },
+  classNames: classes,
 });

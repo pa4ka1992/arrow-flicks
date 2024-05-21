@@ -31,6 +31,8 @@ const ReleaseYearSelect: FC = () => {
       rightSection={<IconChevronDown stroke={1.2} />}
       rightSectionPointerEvents="none"
       type="multiple"
+      miw={180}
+      maw={280}
       {...{ valueFormatter }}
       {...form.getInputProps('primary_release_year')}
     />
