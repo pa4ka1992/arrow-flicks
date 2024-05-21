@@ -27,10 +27,18 @@ const Navigation: FC<NavigationProps> = ({ toggle }) => {
   ];
 
   return (
-    <Stack gap="sm" mt={{ base: 0, lg: 80, xs: 40 }}>
+    <Stack gap="sm" mt={{ base: 0, lg: 80 }}>
       {navlinkActive.map(({ label, ...props }) => (
         <Tooltip visibleFrom="xs" hiddenFrom="lg" key={label} position="right" {...{ label }}>
-          <NavLink classNames={classes} component={Link} onClick={toggle} py={10} px="xs" {...{ label }} {...props} />
+          <NavLink
+            classNames={classes}
+            component={Link}
+            onClick={toggle}
+            py={{ base: 8, sm: 10 }}
+            px={{ base: 8, sm: 'xs' }}
+            {...{ label }}
+            {...props}
+          />
         </Tooltip>
       ))}
     </Stack>

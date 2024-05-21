@@ -14,13 +14,15 @@ const MainLayout: FC<MainLayoutProps> = ({ children }) => (
     layout="default"
     header={{
       height: {
-        base: 60,
+        base: 50,
+        sm: 60,
         lg: 0,
       },
     }}
     navbar={{
       width: {
-        base: 72,
+        base: 52,
+        sm: 60,
         lg: 280,
       },
       breakpoint: 'xs',

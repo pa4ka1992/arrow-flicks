@@ -17,7 +17,7 @@ const MovieCard = ({ movie, children, variant = 'list', ...mantineProps }: Movie
   const { id, poster_path } = movie;
 
   return (
-    <Card h="100%">
+    <Card p={{ base: 'xs', md: 'lg' }} h="100%">
       <Group align="flex-start" gap="sm" wrap="nowrap" {...mantineProps}>
         <Poster movieId={id} path={poster_path} {...{ variant }} />
 

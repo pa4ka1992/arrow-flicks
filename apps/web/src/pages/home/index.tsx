@@ -14,7 +14,7 @@ const Home: NextPage = () => {
   const { data: movieSearch } = tmdbApi.useSearchMovies(params, router.isReady);
 
   return (
-    <Container pos="relative" size={1020}>
+    <Container p={{ base: 'xs', md: 'md' }} pos="relative" size={1020}>
       <Box bg="grey.0" pt={{ base: 30, lg: 0 }} pb="lg" top={0} style={{ zIndex: 1 }}>
         <Title mb={40} fw={700} order={1}>
           Movies
@@ -24,7 +24,7 @@ const Home: NextPage = () => {
       </Box>
 
       <Stack gap="lg">
-        <Grid gutter="sm">
+        <Grid gutter={{ base: 'xs', md: 'sm' }}>
           {movieSearch?.results?.map((movie) => (
             <Grid.Col key={movie.id} span={6}>
               <MovieCard mih={170} {...{ movie }}>

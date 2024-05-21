@@ -1,5 +1,5 @@
 .inner {
-  top: 60px;
+  top: 50px;
   margin-right: 10px;
 }
 
@@ -7,4 +7,14 @@
   background-color: var(--mantine-primary-color-2);
   box-shadow: none;
   height: auto;
+}
+
+.logo {
+  @media screen and (max-width: $mantine-breakpoint-sm) {
+    gap: 6px;
+  }
+}
+
+.body {
+  padding: var(--mantine-spacing-sm);
 }

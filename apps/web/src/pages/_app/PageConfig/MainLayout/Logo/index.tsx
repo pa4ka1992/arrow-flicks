@@ -30,12 +30,13 @@ const Logo: FC<NavLinkProps> = ({ ...navlinkProps }) => {
         classNames={{
           inner: classes.inner,
           content: classes.content,
+          body: classes.body,
         }}
         onClose={toggle}
-        position="top"
         overlayProps={{
-          top: 60,
+          top: 50,
         }}
+        position="top"
         transitionProps={{ transition: 'slide-right' }}
         shadow="none"
         withCloseButton={false}
@@ -44,14 +45,13 @@ const Logo: FC<NavLinkProps> = ({ ...navlinkProps }) => {
         <Navigation {...{ toggle }} />
       </Drawer>
 
-      <Group>
+      <Group gap={4}>
         <Burger
           aria-label="Toggle navigation"
           color="purple.6"
           hiddenFrom="xs"
           onClick={toggle}
-          w={32}
-          h={32}
+          size="sm"
           {...{ opened }}
         />
 
@@ -62,8 +62,10 @@ const Logo: FC<NavLinkProps> = ({ ...navlinkProps }) => {
           p={0}
           label={
             <Group classNames={{ root: classes.logo }} gap="sm" c="purple.6">
-              <Image src="/images/logo.svg" visibleFrom="xs" />
-              <Title order={2}>ArrowFlicks</Title>
+              <Image h={{ base: 24, sm: 32 }} src="/images/logo.svg" visibleFrom="xs" />
+              <Title order={2} fz={{ base: 'md', sm: 'lg' }}>
+                ArrowFlicks
+              </Title>
             </Group>
           }
           unstyled
