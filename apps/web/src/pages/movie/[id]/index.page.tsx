@@ -34,19 +34,10 @@ const Movie: NextPage = () => {
   }
 
   return (
-    <Container size={840}>
-      <Breadcrumbs
-        fz="xs"
-        mt={{ base: 'md', lg: 0 }}
-        mb="md"
-        styles={{
-          separator: {
-            margin: '0 10px',
-          },
-        }}
-      >
+    <Container px={{ base: 'xs', md: 'md' }} size={840}>
+      <Breadcrumbs classNames={classes} fz="xs" mt={{ base: 'sm', sm: 'md', lg: 0 }} mb={{ base: 'sm', sm: 'md' }}>
         {breadcrumbs.map(({ title, href }) => (
-          <Anchor className={classes.anchor} fz="xs" component={Link} {...{ href }} key={href}>
+          <Anchor fz="xs" component={Link} {...{ href }} key={href}>
             {title}
           </Anchor>
         ))}

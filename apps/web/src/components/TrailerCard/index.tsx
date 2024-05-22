@@ -16,17 +16,17 @@ const TrailerCard: FC<TrailerCardProps> = ({ movie: { videos, overview, producti
   }
 
   return (
-    <Card>
+    <Card p={{ base: 'xs', md: 'lg' }}>
       <TrailerFrame videos={videos} />
 
       {!!overview && (
         <>
-          <Title fw={700} order={3} mb="sm">
+          <Title fw={700} fz={{ base: 'sm', sm: 'md' }} order={3} mb={{ base: 10, sm: 'sm' }}>
             Description
           </Title>
-          <Text fz="sm">{overview}</Text>
+          <Text fz={{ base: 'xs', sm: 'sm' }}>{overview}</Text>
 
-          <Divider my="md" />
+          <Divider my={{ base: 'xs', sm: 'md' }} />
         </>
       )}
 

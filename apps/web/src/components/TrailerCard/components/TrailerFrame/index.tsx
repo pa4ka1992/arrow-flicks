@@ -1,5 +1,5 @@
 import React, { FC } from 'react';
-import { AspectRatio, Divider, Title } from '@mantine/core';
+import { AspectRatio, Box, Divider, Title } from '@mantine/core';
 import { DetailedMovie } from 'app-types';
 
 import classes from './index.module.css';
@@ -15,28 +15,30 @@ const TrailerFrame: FC<TrailerFrameProps> = ({ videos }) => {
 
   return (
     <>
-      <Title fw={700} order={3} mb="sm">
+      <Title fw={700} fz={{ base: 'sm', sm: 'md' }} order={3} mb={{ base: 10, sm: 'sm' }}>
         Trailer
       </Title>
 
-      <AspectRatio
-        classNames={{
-          root: classes.root,
-        }}
-        w={500}
-        h={281}
-        ratio={16 / 9}
-      >
-        <iframe
-          src={`https://www.youtube.com/embed/${videos.results[0].key}`}
-          title="YouTube video player"
-          referrerPolicy="strict-origin-when-cross-origin"
-          allowFullScreen
-          allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
-        />
-      </AspectRatio>
+      <Box mx={{ base: -12, xs: 0 }}>
+        <AspectRatio
+          classNames={{
+            root: classes.root,
+          }}
+          h={281}
+          w={500}
+          ratio={16 / 9}
+        >
+          <iframe
+            src={`https://www.youtube.com/embed/${videos.results[0].key}`}
+            title="YouTube video player"
+            referrerPolicy="strict-origin-when-cross-origin"
+            allowFullScreen
+            allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+          />
+        </AspectRatio>
+      </Box>
 
-      <Divider my="md" />
+      <Divider my={{ base: 'xs', sm: 'md' }} />
     </>
   );
 };

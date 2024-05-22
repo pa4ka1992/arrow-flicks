@@ -17,7 +17,7 @@ const ProductionCompanies: FC<ProductionCompaniesProps> = ({ companies }) => {
 
   return (
     <>
-      <Title fw={700} order={3} mb="sm">
+      <Title fw={700} fz={{ base: 'sm', sm: 'md' }} order={3} mb={{ base: 10, sm: 'sm' }}>
         Production
       </Title>
 
@@ -27,8 +27,8 @@ const ProductionCompanies: FC<ProductionCompaniesProps> = ({ companies }) => {
             <Avatar
               alt="company logo"
               src={`${config.TMDB_URL}/${logo_path}`}
-              w={40}
-              h={40}
+              w={{ base: 32, sm: 40 }}
+              h={{ base: 32, sm: 40 }}
               styles={{
                 image: {
                   objectFit: 'contain',
@@ -37,7 +37,7 @@ const ProductionCompanies: FC<ProductionCompaniesProps> = ({ companies }) => {
             >
               <ClapperboardIcon />
             </Avatar>
-            <Title fw={700} order={4}>
+            <Title fw={700} fz={{ base: 'xs', sm: 'sm' }} order={4}>
               {name}
             </Title>
           </Group>
