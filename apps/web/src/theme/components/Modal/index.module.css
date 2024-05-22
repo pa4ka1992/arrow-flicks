@@ -1,10 +1,14 @@
 .header,
 .body {
   padding: var(--mantine-spacing-sm);
+
+  @media screen and (max-width: $mantine-breakpoint-xs) {
+    padding: 10px;
+  }
 }
 
 .header {
-  border-bottom: 2px solid var(--mantine-color-grey-3);
+  border-bottom: 1px solid var(--mantine-color-grey-3);
 }
 
 .title {

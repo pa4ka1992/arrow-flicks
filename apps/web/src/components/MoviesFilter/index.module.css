@@ -21,6 +21,6 @@
   @media screen and (max-width: $mantine-breakpoint-md) {
     position: absolute;
     right: 0;
-    top: -6px;
+    top: -28px;
   }
 }

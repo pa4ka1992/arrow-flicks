@@ -23,4 +23,10 @@
       background-color: var(--mantine-primary-color-7);
     }
   }
+
+  @media screen and (max-width: $mantine-breakpoint-xs) {
+    font-size: var(--mantine-font-size-xs);
+    padding: 0 var(--button-padding-x-sm);
+    height: var(--button-height-sm);
+  }
 }

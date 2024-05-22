@@ -24,7 +24,7 @@ const Rating: FC<RatingProps> = ({ movieId, title }) => {
   return (
     <>
       <Modal centered opened={opened} onClose={close} title="Your rating" size="sm">
-        <Stack gap="sm">
+        <Stack className={classes.box}>
           <Title order={4}>
             {title}
             {movieId}
@@ -32,9 +32,9 @@ const Rating: FC<RatingProps> = ({ movieId, title }) => {
 
           <MantineRating count={TMDB_MAX_RATING} onChange={updateRating} value={rating} />
 
-          <Group gap={0}>
+          <Group gap={3}>
             <Button>Save</Button>
-            <Button onClick={removeRating} variant="transparent">
+            <Button onClick={removeRating} variant="subtle">
               Remove rating
             </Button>
           </Group>

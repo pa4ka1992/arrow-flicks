@@ -82,7 +82,7 @@ const MoviesFilter: FC = () => {
                 p={0}
                 onClick={resetForm}
                 type="reset"
-                variant="transparent"
+                variant="subtle"
               >
                 Reset filters
               </Button>

@@ -1,3 +1,11 @@
+.box {
+  gap: var(--mantine-spacing-sm);
+
+  @media screen and (max-width: $mantine-breakpoint-xs) {
+    gap: var(--mantine-spacing-xs);
+  }
+}
+
 .rating {
   width: 26px;
   height: 26px;
