@@ -1,6 +1,7 @@
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 import { NextPage } from 'next';
 import { useSearchParams } from 'next/navigation';
+import { useRouter } from 'next/router';
 import { Box, Center, Container, Grid, Loader, LoadingOverlay, Stack, Title } from '@mantine/core';
 
 import { tmdbApi } from 'resources/tmdb';
@@ -8,13 +9,21 @@ import { tmdbApi } from 'resources/tmdb';
 import { MovieCard, MoviesFilter, MoviesPagination } from 'components';
 
 const Home: NextPage = () => {
+  const router = useRouter();
   const params = useSearchParams();
+  const [enableQuery, setEnableQuery] = useState(false);
 
-  const { data: movieSearch, isLoading, isFetching } = tmdbApi.useSearchMovies(params);
+  useEffect(() => {
+    if (router.isReady) {
+      setEnableQuery(true);
+    }
+  }, [router]);
+
+  const { data: movieSearch, isLoading, isFetching } = tmdbApi.useSearchMovies(params, enableQuery);
 
   return (
     <>
-      <LoadingOverlay visible={isFetching} zIndex={1000} overlayProps={{ radius: 'sm' }} />
+      <LoadingOverlay visible={isFetching && !isLoading} zIndex={1000} overlayProps={{ radius: 'sm' }} />
 
       <Container px={{ base: 'xs', md: 'md' }} pos="relative" size={1020}>
         <Box bg="grey.0" pt={{ base: 'xs', lg: 0 }} pb={{ base: 'xs', lg: 'lg' }}>
@@ -25,7 +34,7 @@ const Home: NextPage = () => {
           <MoviesFilter />
         </Box>
 
-        {isLoading ? (
+        {isLoading || !enableQuery ? (
           <Center mt="xl">
             <Loader size="md" />
           </Center>

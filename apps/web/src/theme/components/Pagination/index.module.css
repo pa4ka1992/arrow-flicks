@@ -1,3 +1,18 @@
+.root {
+  @media screen and (max-width: $mantine-breakpoint-xs) {
+    & > div {
+      justify-content: center;
+    }
+  }
+}
+
 .control {
   font-size: var(--mantine-font-size-sm);
+
+  @media screen and (max-width: $mantine-breakpoint-xs) {
+    height: 30px;
+    min-width: 30px;
+    padding: 4px;
+    font-size: var(--mantine-font-size-xs);
+  }
 }
