@@ -18,7 +18,7 @@ interface GenresSelectProps {
 
 export const GenresSelect: FC<GenresSelectProps> = ({ formIsReady }) => {
   const form = useFilterFormContext();
-  const { data: result } = tmdbApi.useGetMoviesGenres();
+  const { data: result, isLoading } = tmdbApi.useGetMoviesGenres();
   const [genresId, setGenresId] = useState<string[]>([]);
   const [isInitalGenresApplied, setIsInitialGenresApplied] = useState(false);
 
@@ -77,7 +77,7 @@ export const GenresSelect: FC<GenresSelectProps> = ({ formIsReady }) => {
   }, [formIsReady]);
 
   return (
-    <Combobox onOptionSubmit={selectOption} store={combobox} withinPortal={false}>
+    <Combobox disabled={isLoading} onOptionSubmit={selectOption} store={combobox} withinPortal={false}>
       <Combobox.DropdownTarget>
         <PillsInput
           classNames={{
@@ -85,7 +85,8 @@ export const GenresSelect: FC<GenresSelectProps> = ({ formIsReady }) => {
             input: classes.input,
             section: classes.section,
           }}
-          data-expanded={combobox.dropdownOpened}
+          data-expanded={!isLoading && combobox.dropdownOpened}
+          disabled={isLoading}
           label="Genres"
           maw={284}
           miw={180}

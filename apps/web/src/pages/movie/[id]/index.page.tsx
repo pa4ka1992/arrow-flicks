@@ -2,7 +2,7 @@ import React from 'react';
 import { NextPage } from 'next';
 import Link from 'next/link';
 import { useRouter } from 'next/router';
-import { Anchor, Breadcrumbs, Container, Stack } from '@mantine/core';
+import { Anchor, Breadcrumbs, Container, LoadingOverlay, Stack } from '@mantine/core';
 
 import { tmdbApi } from 'resources/tmdb';
 
@@ -18,12 +18,16 @@ const Movie: NextPage = () => {
   const router = useRouter();
   const { path } = useRestoreQuery(RoutePath.Home);
 
-  const { data: movie } = tmdbApi.useGetMovieDetail({ movieId: router.query.id });
+  const { data: movie, isLoading } = tmdbApi.useGetMovieDetail({ movieId: router.query.id });
 
   const breadcrumbs = [
     { title: 'Movies', href: path },
     { title: movie?.original_title, href: '#' },
   ];
+
+  if (isLoading) {
+    return <LoadingOverlay visible zIndex={1000} overlayProps={{ radius: 'sm' }} />;
+  }
 
   if (!movie) {
     return null;
