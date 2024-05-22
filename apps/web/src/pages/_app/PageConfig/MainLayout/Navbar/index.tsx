@@ -1,7 +1,8 @@
 import React, { FC } from 'react';
 import { AppShell } from '@mantine/core';
 
-import Logo from '../Logo';
+import { Logo } from 'components';
+
 import Navigation from '../Navigation';
 
 const Navbar: FC = () => (

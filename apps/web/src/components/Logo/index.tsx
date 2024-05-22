@@ -7,11 +7,15 @@ import { useRestoreQuery } from 'utils';
 
 import { RoutePath } from 'routes';
 
-import Navigation from '../Navigation';
+import Navigation from '../../pages/_app/PageConfig/MainLayout/Navigation';
 
 import classes from './index.module.css';
 
-const Logo: FC<NavLinkProps> = ({ ...navlinkProps }) => {
+interface LogoProps extends NavLinkProps {
+  hideLogo?: boolean;
+}
+
+const Logo: FC<LogoProps> = ({ hideLogo = true, ...navlinkProps }) => {
   const sm = useMediaQuery('(max-width: 48em)');
   const [opened, { toggle, close }] = useDisclosure();
   const { path } = useRestoreQuery(RoutePath.Home);
@@ -49,6 +53,7 @@ const Logo: FC<NavLinkProps> = ({ ...navlinkProps }) => {
         <Burger
           aria-label="Toggle navigation"
           color="purple.6"
+          display={hideLogo ? 'block' : 'none'}
           hiddenFrom="sm"
           onClick={toggle}
           size="sm"
@@ -62,7 +67,7 @@ const Logo: FC<NavLinkProps> = ({ ...navlinkProps }) => {
           p={0}
           label={
             <Group classNames={{ root: classes.logo }} gap="sm" c="purple.6">
-              <Image h={{ base: 24, sm: 32 }} src="/images/logo.svg" visibleFrom="sm" />
+              <Image h={{ base: 24, sm: 32 }} src="/images/logo.svg" visibleFrom={hideLogo ? 'sm' : undefined} />
               <Title order={2} fz={{ base: 'md', sm: 'lg' }}>
                 ArrowFlicks
               </Title>

@@ -1,5 +1,6 @@
 import React from 'react';
 import { NextPage } from 'next';
+import Head from 'next/head';
 import Link from 'next/link';
 import { useRouter } from 'next/router';
 import { Anchor, Breadcrumbs, Container, LoadingOverlay, Stack } from '@mantine/core';
@@ -34,23 +35,29 @@ const Movie: NextPage = () => {
   }
 
   return (
-    <Container px={{ base: 'xs', md: 'md' }} size={840}>
-      <Breadcrumbs classNames={classes} fz="xs" mt={{ base: 'sm', sm: 'md', lg: 0 }} mb={{ base: 'sm', sm: 'md' }}>
-        {breadcrumbs.map(({ title, href }) => (
-          <Anchor fz="xs" component={Link} {...{ href }} key={href}>
-            {title}
-          </Anchor>
-        ))}
-      </Breadcrumbs>
+    <>
+      <Head>
+        <title>Movie {movie.original_title}</title>
+      </Head>
 
-      <Stack gap="md">
-        <MovieCard mih={350} variant="page" {...{ movie }}>
-          <MovieCard.DetailedInfo {...{ movie }} />
-        </MovieCard>
+      <Container px={{ base: 'xs', md: 'md' }} size={840}>
+        <Breadcrumbs classNames={classes} fz="xs" mt={{ base: 'sm', sm: 'md', lg: 0 }} mb={{ base: 'sm', sm: 'md' }}>
+          {breadcrumbs.map(({ title, href }) => (
+            <Anchor fz="xs" component={Link} {...{ href }} key={href}>
+              {title}
+            </Anchor>
+          ))}
+        </Breadcrumbs>
 
-        <TrailerCard {...{ movie }} />
-      </Stack>
-    </Container>
+        <Stack gap="md">
+          <MovieCard mih={350} variant="page" {...{ movie }}>
+            <MovieCard.DetailedInfo {...{ movie }} />
+          </MovieCard>
+
+          <TrailerCard {...{ movie }} />
+        </Stack>
+      </Container>
+    </>
   );
 };
 

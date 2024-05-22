@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import { NextPage } from 'next';
+import Head from 'next/head';
 import { useSearchParams } from 'next/navigation';
 import { useRouter } from 'next/router';
 import { Box, Center, Container, Grid, Loader, LoadingOverlay, Stack, Title } from '@mantine/core';
@@ -23,6 +24,10 @@ const Home: NextPage = () => {
 
   return (
     <>
+      <Head>
+        <title>Search movies</title>
+      </Head>
+
       <LoadingOverlay visible={isFetching && !isLoading} zIndex={1000} overlayProps={{ radius: 'sm' }} />
 
       <Container px={{ base: 'xs', md: 'md' }} pos="relative" size={1020}>
