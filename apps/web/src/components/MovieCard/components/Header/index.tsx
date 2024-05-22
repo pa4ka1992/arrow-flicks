@@ -13,7 +13,7 @@ interface HeaderProps extends GroupProps {
 }
 
 const Header: FC<HeaderProps> = ({ movieId, title, ...groupProps }) => (
-  <Group align="flex-start" justify="space-between" wrap="nowrap" {...groupProps}>
+  <Group align="flex-start" gap="sm" justify="space-between" wrap="nowrap" {...groupProps}>
     <Anchor component={Link} href={{ pathname: RoutePath.Movie, query: { id: movieId } }}>
       <Title c="purple.6" fz={{ base: 'sm', sm: 'md' }} order={3}>
         {title}

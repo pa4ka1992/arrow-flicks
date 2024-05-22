@@ -1,5 +1,5 @@
 import React, { FC, useState } from 'react';
-import { ActionIcon, Button, Group, Modal, Rating as MantineRating, Stack, Title } from '@mantine/core';
+import { ActionIcon, Button, Group, Modal, Rating as MantineRating, Stack, Text, Title } from '@mantine/core';
 import { useDisclosure } from '@mantine/hooks';
 import { IconStarFilled } from '@tabler/icons-react';
 import { Movie } from 'app-types';
@@ -41,9 +41,12 @@ const Rating: FC<RatingProps> = ({ movieId, title }) => {
         </Stack>
       </Modal>
 
-      <ActionIcon c="grey.4" variant="transparent" onClick={open} aria-label="Rating">
-        <IconStarFilled className={classes.rating} />
-      </ActionIcon>
+      <Group gap={3} wrap="nowrap">
+        <ActionIcon c="grey.4" variant="transparent" onClick={open} aria-label="Rating">
+          <IconStarFilled className={classes.rating} />
+        </ActionIcon>
+        <Text size="sm">1.0</Text>
+      </Group>
     </>
   );
 };

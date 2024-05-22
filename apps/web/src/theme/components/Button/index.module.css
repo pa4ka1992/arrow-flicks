@@ -1,4 +1,6 @@
 .root {
+  transition: all 0.2s;
+
   &[data-variant='transparent'] {
     &:hover {
       color: var(--mantine-primary-color-5);
@@ -26,7 +28,7 @@
 
   @media screen and (max-width: $mantine-breakpoint-xs) {
     font-size: var(--mantine-font-size-xs);
-    padding: 0 var(--button-padding-x-sm);
-    height: var(--button-height-sm);
+    padding: 0 var(--button-padding-x-xs);
+    height: var(--button-height-xs);
   }
 }

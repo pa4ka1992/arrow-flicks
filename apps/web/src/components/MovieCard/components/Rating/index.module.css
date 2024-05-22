@@ -9,6 +9,11 @@
 .rating {
   width: 26px;
   height: 26px;
+  transition: color 0.2s;
+
+  &:hover {
+    color: var(--mantine-primary-color-4);
+  }
 
   @media screen and (max-width: $mantine-breakpoint-sm) {
     width: 23px;

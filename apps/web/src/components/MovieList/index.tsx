@@ -24,9 +24,11 @@ const MovieList: FC = () => {
   const { data: movieSearch, isLoading, isFetching } = tmdbApi.useSearchMovies(params, enableQuery);
 
   if (isLoading || !enableQuery) {
-    <Center mt="xl">
-      <Loader size="md" />
-    </Center>;
+    return (
+      <Center mt="xl">
+        <Loader size="md" />
+      </Center>
+    );
   }
 
   if (!isLoading && !isFetching && !movieSearch?.results.length) {

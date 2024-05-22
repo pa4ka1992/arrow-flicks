@@ -5,4 +5,5 @@ export { default as NoPoster } from './MovieCard/components/NoPoster';
 export { default as MovieList } from './MovieList';
 export { default as MoviesFilter } from './MoviesFilter';
 export { default as MoviesPagination } from './MoviesPagination';
+export { default as RatedSearch } from './RatedSearch';
 export { default as TrailerCard } from './TrailerCard';
