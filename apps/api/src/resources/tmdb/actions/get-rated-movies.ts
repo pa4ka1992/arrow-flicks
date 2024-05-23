@@ -14,7 +14,7 @@ async function handler(ctx: AppKoaContext<ValidatedData>) {
 
   if (userId) {
     const ratedMovies = await tmdbService.db.find(
-      { userId, original_title: { $regex: searchValue } },
+      { userId, original_title: { $regex: searchValue, $options: 'i' } },
       { page, perPage },
     );
 

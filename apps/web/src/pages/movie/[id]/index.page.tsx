@@ -53,7 +53,7 @@ const Movie: NextPage = () => {
         <title>Movie {movie.original_title}</title>
       </Head>
 
-      <Container px={{ base: 'xs', md: 'md' }} size={840}>
+      <Container px={{ base: 'xs', md: 'md' }} size={840} style={{ flexGrow: 1 }}>
         <Breadcrumbs classNames={classes} fz="xs" mt={{ base: 'sm', sm: 'md', lg: 0 }} mb={{ base: 'sm', sm: 'md' }}>
           {breadcrumbs.map(({ title, href }) => (
             <Anchor fz="xs" component={Link} {...{ href }} key={href}>

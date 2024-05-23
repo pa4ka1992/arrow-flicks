@@ -10,7 +10,7 @@ import EmptyMovies from 'components/EmptyMovies';
 import MovieCard from '../MovieCard';
 import MoviesPagination from '../MoviesPagination';
 
-const MovieList: FC = () => {
+const SearchMovieList: FC = () => {
   const router = useRouter();
   const params = useSearchParams();
   const [enableQuery, setEnableQuery] = useState(false);
@@ -21,7 +21,7 @@ const MovieList: FC = () => {
     }
   }, [router]);
 
-  const { data: movieSearch, isLoading, isFetching } = tmdbApi.useSearchMovies(params, enableQuery);
+  const { data: movieSearch, isLoading, isFetching, isFetched } = tmdbApi.useSearchMovies(params, enableQuery);
 
   if (isLoading || !enableQuery) {
     return (
@@ -31,7 +31,7 @@ const MovieList: FC = () => {
     );
   }
 
-  if (!isLoading && !isFetching && !movieSearch?.results.length) {
+  if (isFetched && !movieSearch?.results.length) {
     return <EmptyMovies />;
   }
 
@@ -41,7 +41,7 @@ const MovieList: FC = () => {
 
       <Stack gap="lg">
         <Grid gutter={{ base: 'xs', md: 'sm' }}>
-          {movieSearch?.results?.map((movie) => (
+          {movieSearch?.results.map((movie) => (
             <Grid.Col key={movie.id} span={{ base: 12, xs: 6 }}>
               <MovieCard mih={170} {...{ movie }}>
                 <MovieCard.GeneralInfo genres={movie.genre_ids} />
@@ -50,10 +50,12 @@ const MovieList: FC = () => {
           ))}
         </Grid>
 
-        <MoviesPagination total={movieSearch?.total_pages} styles={{ root: { alignSelf: 'flex-end' } }} />
+        {movieSearch && (
+          <MoviesPagination total={movieSearch.total_pages} styles={{ root: { alignSelf: 'flex-end' } }} />
+        )}
       </Stack>
     </Box>
   );
 };
 
-export default MovieList;
+export default SearchMovieList;

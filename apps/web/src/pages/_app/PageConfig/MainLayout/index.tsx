@@ -54,7 +54,7 @@ const MainLayout: FC<MainLayoutProps> = ({ children }) => {
       <Header />
       <Navbar />
 
-      <AppShell.Main pt={{ base: 0, lg: 40 }} pb={{ base: 'xl', xs: 82 }}>
+      <AppShell.Main display="flex" pt={{ base: 0, lg: 40 }} pb={{ base: 'xl', xs: 82 }}>
         {children}
 
         <Affix position={{ bottom: 20, right: 20 }}>

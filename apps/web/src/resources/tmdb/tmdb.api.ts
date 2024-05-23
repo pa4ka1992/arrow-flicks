@@ -4,9 +4,11 @@ import { apiService } from 'services';
 
 import queryClient from 'query-client';
 
-import { DetailedMovie, Movie, MovieGenre, SearchMovieResult } from 'types';
+import { DetailedMovie, Movie, MovieGenre, RatedMovieResult, SearchMovieResult } from 'types';
 
 type GetMovieDetailParams = { movieId?: string | string[] };
+
+type GetRatedMovieParams = { searchValue: string; page: number; perPage: number };
 
 type UpdateRatingBody = {
   id: number;
@@ -19,14 +21,14 @@ type DeleteRatingBody = {
 
 export const useSearchMovies = <T extends URLSearchParams>(params: T, enabled = true) =>
   useQuery<SearchMovieResult>({
-    queryKey: ['movie', `params:${params.toString()}`],
+    queryKey: ['movie', 'search', `${params.toString()}`],
     queryFn: () => apiService.get(`/movies/search-movies?${params}`),
     enabled,
   });
 
 export const useGetMovieDetail = <T extends GetMovieDetailParams>(params: T) =>
   useQuery<DetailedMovie>({
-    queryKey: ['movie', `id:${params}`],
+    queryKey: ['movie', 'details', params.movieId],
     queryFn: () => apiService.get('/movies/get-movie-details', params),
     enabled: !!params?.movieId,
   });
@@ -35,6 +37,12 @@ export const useGetMoviesGenres = () =>
   useQuery<{ genres: MovieGenre[] }>({
     queryKey: ['genres'],
     queryFn: () => apiService.get('/movies/get-movies-genres'),
+  });
+
+export const useGetRatedMovies = <T extends GetRatedMovieParams>(params: T) =>
+  useQuery<RatedMovieResult>({
+    queryKey: ['movie', 'rated', params.searchValue, params.page],
+    queryFn: () => apiService.get('/movies/get-rated-movies', params),
   });
 
 export const useAddRating = <T extends Movie>() =>

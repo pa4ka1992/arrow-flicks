@@ -2,6 +2,7 @@ import React, { FC, useCallback, useEffect, useState } from 'react';
 import { useSearchParams } from 'next/navigation';
 import { useRouter } from 'next/router';
 import { Pagination, PaginationProps } from '@mantine/core';
+import { StorageKey } from 'app-types';
 
 import { TMDB_DEFAULT_PAGE, TMDB_MAX_PAGE_LIMIT } from 'app-constants';
 
@@ -18,6 +19,7 @@ const MoviesPagination: FC<Partial<PaginationProps>> = ({ total, ...paginationPr
       const updatedParams = new URLSearchParams(updatedQuery);
 
       setPage(value);
+      localStorage.setItem(StorageKey.FILTER, updatedParams.toString());
       router.push(`${router.pathname}?${updatedParams}`);
     },
     [router],

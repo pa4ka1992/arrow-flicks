@@ -55,6 +55,12 @@ export interface SearchMovieResult {
   total_results: number;
 }
 
+export interface RatedMovieResult {
+  count: number;
+  pagesCount: number;
+  results: Movie[];
+}
+
 export type SearchQuery = z.infer<typeof searchQuerySchema>;
 
 export type RatedMovie = z.infer<typeof ratedMovieSchema>;
@@ -69,4 +75,8 @@ export type SearchQueryForm = {
   sort_by: MovieSort;
   vote_average: VoteAverage;
   with_genres?: string[];
+};
+
+export type SearchRatedForm = {
+  searchValue: string;
 };
