@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useMemo } from 'react';
 import { NextPage } from 'next';
 import Head from 'next/head';
 import Link from 'next/link';
@@ -19,18 +19,31 @@ const Movie: NextPage = () => {
   const router = useRouter();
   const { path } = useRestoreQuery(RoutePath.Home);
 
-  const { data: movie, isLoading } = tmdbApi.useGetMovieDetail({ movieId: router.query.id });
+  const { data: movie, isLoading, isFetching } = tmdbApi.useGetMovieDetail({ movieId: router.query.id });
+
+  const cardMovie = useMemo(() => {
+    if (movie) {
+      const genre_ids = movie.genres.map(({ id }) => id);
+
+      return {
+        ...movie,
+        genre_ids,
+      };
+    }
+
+    return undefined;
+  }, [movie]);
 
   const breadcrumbs = [
     { title: 'Movies', href: path },
     { title: movie?.original_title, href: '#' },
   ];
 
-  if (isLoading) {
-    return <LoadingOverlay visible zIndex={1000} overlayProps={{ radius: 'sm' }} />;
+  if (isLoading || isFetching) {
+    return <LoadingOverlay visible />;
   }
 
-  if (!movie) {
+  if (!movie || !cardMovie) {
     return null;
   }
 
@@ -50,7 +63,7 @@ const Movie: NextPage = () => {
         </Breadcrumbs>
 
         <Stack gap="md">
-          <MovieCard mih={350} variant="page" {...{ movie }}>
+          <MovieCard mih={350} variant="page" movie={cardMovie}>
             <MovieCard.DetailedInfo {...{ movie }} />
           </MovieCard>
 

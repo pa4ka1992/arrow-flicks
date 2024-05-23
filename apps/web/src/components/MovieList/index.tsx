@@ -37,7 +37,7 @@ const MovieList: FC = () => {
 
   return (
     <Box>
-      <LoadingOverlay visible={isFetching && !isLoading} zIndex={1000} overlayProps={{ radius: 'sm' }} />
+      <LoadingOverlay visible={isFetching && !isLoading} />
 
       <Stack gap="lg">
         <Grid gutter={{ base: 'xs', md: 'sm' }}>

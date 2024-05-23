@@ -10,5 +10,6 @@ export const paginationSchema = z.object({
     .object({
       createdOn: z.enum(['asc', 'desc']).default('asc'),
     })
-    .default({}),
+    .default({})
+    .optional(),
 });

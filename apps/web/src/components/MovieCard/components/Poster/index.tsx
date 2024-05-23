@@ -29,7 +29,7 @@ const Poster: FC<PosterProps> = ({ movieId, path, variant }) => {
       component={NextImage}
       alt="movie poster"
       fill
-      sizes="100vw"
+      sizes="33vw"
       src={`${config.TMDB_URL}/${path}`}
       quality={80}
       placeholder="blur"

@@ -15,7 +15,7 @@ const createToken = async (userId: string, type: TokenType, isShadow?: boolean) 
     tokenType: type,
     userId,
     isShadow: isShadow || null,
-  }
+  };
   const value = await securityUtil.generateJwtToken(payload);
 
   return service.insertOne({

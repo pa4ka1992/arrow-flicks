@@ -4,36 +4,69 @@ import { useDisclosure } from '@mantine/hooks';
 import { IconStarFilled } from '@tabler/icons-react';
 import { Movie } from 'app-types';
 
+import { tmdbApi } from 'resources/tmdb';
+
 import { TMDB_MAX_RATING } from 'app-constants';
+
+import { getMovieFields } from './utils';
 
 import classes from './index.module.css';
 
 interface RatingProps {
-  movieId: Movie['id'];
-  title: Movie['original_title'];
+  movie: Movie;
 }
 
-const Rating: FC<RatingProps> = ({ movieId, title }) => {
+const Rating: FC<RatingProps> = ({ movie }) => {
   const [opened, { open, close }] = useDisclosure(false);
-  const [rating, setRating] = useState(0);
+  const [rating, setRating] = useState(movie.rating ?? 0);
+  const addRating = tmdbApi.useAddRating();
+  const updateRating = tmdbApi.useUpdateRating();
+  const deleteRating = tmdbApi.useDeleteRating();
 
-  const updateRating = (value: number) => setRating(value);
+  const isRatingAssigned = typeof movie.rating !== 'undefined';
 
-  const removeRating = () => setRating(0);
+  const changeRating = (value: number) => setRating(value);
+
+  const removeRating = () => {
+    const { mutate } = deleteRating;
+
+    setRating(0);
+    mutate({ id: movie.id });
+    close();
+  };
+
+  const submitRating = () => {
+    if (isRatingAssigned) {
+      const { mutate } = updateRating;
+
+      mutate({ id: movie.id, rating });
+      close();
+
+      return;
+    }
+
+    const body = getMovieFields(movie);
+    const { mutate } = addRating;
+
+    close();
+    mutate({ ...body, rating });
+  };
+
+  const closeModal = () => {
+    setRating(movie.rating ?? 0);
+    close();
+  };
 
   return (
     <>
-      <Modal centered opened={opened} onClose={close} title="Your rating" size="sm">
+      <Modal keepMounted={false} centered opened={opened} onClose={closeModal} title="Your rating" size="sm">
         <Stack className={classes.box}>
-          <Title order={4}>
-            {title}
-            {movieId}
-          </Title>
+          <Title order={4}>{movie.original_title}</Title>
 
-          <MantineRating count={TMDB_MAX_RATING} onChange={updateRating} value={rating} />
+          <MantineRating count={TMDB_MAX_RATING} onChange={changeRating} value={rating} />
 
           <Group gap={3}>
-            <Button>Save</Button>
+            <Button onClick={submitRating}>Save</Button>
             <Button onClick={removeRating} variant="subtle">
               Remove rating
             </Button>
@@ -42,10 +75,15 @@ const Rating: FC<RatingProps> = ({ movieId, title }) => {
       </Modal>
 
       <Group gap={3} wrap="nowrap">
-        <ActionIcon c="grey.4" variant="transparent" onClick={open} aria-label="Rating">
+        <ActionIcon
+          className={isRatingAssigned ? classes.active : classes.default}
+          variant="transparent"
+          onClick={open}
+          aria-label="Rating"
+        >
           <IconStarFilled className={classes.rating} />
         </ActionIcon>
-        <Text size="sm">1.0</Text>
+        <Text size="sm">{movie.rating?.toFixed(1)}</Text>
       </Group>
     </>
   );

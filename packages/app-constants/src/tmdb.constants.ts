@@ -6,6 +6,8 @@ export const TMDB_MAX_PAGE_LIMIT = 500;
 
 export const TMDB_DEFAULT_SORT = MovieSort.POPULARITY_DESC;
 
+export const TMDB_MIN_RATING = 10;
+
 export const TMDB_MAX_RATING = 10;
 
 export const TMDB_SEARCH_SORT_OPTIONS = [

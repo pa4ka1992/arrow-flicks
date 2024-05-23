@@ -1,15 +1,29 @@
+import { RatedMovie } from 'app-types';
+
 import config from 'config';
 
+import db from 'db';
+
+import { DATABASE_DOCUMENTS } from 'app-constants';
+import { ratedMovieSchema } from 'schemas';
+
 import { GetMovieDetailsParams, SearchMoviesParams, TmdbServiceConstructorProps } from './tmdb.types';
+
+const service = db.createService<RatedMovie>(DATABASE_DOCUMENTS.MOVIES, {
+  schemaValidator: (obj) => ratedMovieSchema.parseAsync(obj),
+});
 
 class TmdbService {
   apiUrl: string | undefined;
 
   apiKey: string | undefined;
 
+  db: typeof service;
+
   constructor({ apiUrl, apiKey }: TmdbServiceConstructorProps) {
     this.apiUrl = apiUrl;
     this.apiKey = apiKey;
+    this.db = service;
   }
 
   private prepareHeaders(params?: SearchMoviesParams) {

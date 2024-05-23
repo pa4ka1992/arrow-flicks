@@ -5,8 +5,6 @@ import { LayoutType, RoutePath, routesConfiguration } from 'routes';
 
 import MainLayout from './MainLayout';
 
-import 'resources/user/user.handlers';
-
 const layoutToComponent = {
   [LayoutType.HOME]: MainLayout,
   [LayoutType.RATED]: MainLayout,

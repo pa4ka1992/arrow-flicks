@@ -14,24 +14,20 @@ interface MovieCardProps extends MantineStyleProps {
   variant?: `${MovieCardVariant}`;
 }
 
-const MovieCard = ({
-  movie: { id, poster_path, original_title, release_date, vote_average, vote_count },
-  children,
-  variant = 'list',
-  ...mantineProps
-}: MovieCardProps) => {
+const MovieCard = ({ movie, children, variant = 'list', ...mantineProps }: MovieCardProps) => {
   const formatter = useRef(Intl.NumberFormat('en', { notation: 'compact' }));
+  const { id, poster_path, release_date, vote_average, vote_count } = movie;
 
   return (
     <Card p={{ base: 'xs', md: 'lg' }} h="100%">
-      <Header display={{ base: 'flex', md: 'none' }} movieId={id} pb="xs" title={original_title} />
+      <Header display={{ base: 'flex', md: 'none' }} pb="xs" {...{ movie }} />
 
       <Group className={classes.infoBox} align="flex-start" gap="sm" wrap="nowrap" {...mantineProps}>
         <Poster movieId={id} path={poster_path} {...{ variant }} />
 
         <Stack flex="1 1 100%" gap={0} justify="space-between" mih={{ base: 'auto', sm: 'inherit' }} maw="100%">
           <Stack className={classes.statistics} gap={6}>
-            <Header display={{ base: 'none', md: 'flex' }} movieId={id} title={original_title} />
+            <Header display={{ base: 'none', md: 'flex' }} {...{ movie }} />
 
             {release_date && (
               <Text c="grey.6" fz={{ base: 'xs', md: 'sm' }}>

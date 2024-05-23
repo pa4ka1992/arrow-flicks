@@ -8,19 +8,18 @@ import { RoutePath } from 'routes';
 import Rating from '../Rating';
 
 interface HeaderProps extends GroupProps {
-  movieId: Movie['id'];
-  title: Movie['original_title'];
+  movie: Movie;
 }
 
-const Header: FC<HeaderProps> = ({ movieId, title, ...groupProps }) => (
+const Header: FC<HeaderProps> = ({ movie, ...groupProps }) => (
   <Group align="flex-start" gap="sm" justify="space-between" wrap="nowrap" {...groupProps}>
-    <Anchor component={Link} href={{ pathname: RoutePath.Movie, query: { id: movieId } }}>
+    <Anchor component={Link} href={{ pathname: RoutePath.Movie, query: { id: movie.id } }}>
       <Title c="purple.6" fz={{ base: 'sm', sm: 'md' }} order={3}>
-        {title}
+        {movie.original_title}
       </Title>
     </Anchor>
 
-    <Rating {...{ movieId, title }} />
+    <Rating {...{ movie }} />
   </Group>
 );
 

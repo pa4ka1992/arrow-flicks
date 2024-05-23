@@ -1,7 +1,10 @@
-import React, { FC, ReactElement } from 'react';
-import { Affix, AppShell, Button, rem, Transition } from '@mantine/core';
+import React, { FC, ReactElement, useLayoutEffect } from 'react';
+import { Affix, AppShell, Button, LoadingOverlay, rem, Transition } from '@mantine/core';
 import { useWindowScroll } from '@mantine/hooks';
 import { IconArrowUp } from '@tabler/icons-react';
+import { StorageKey } from 'app-types';
+
+import { accountApi } from 'resources/account';
 
 import Header from './Header';
 import Navbar from './Navbar';
@@ -12,6 +15,20 @@ interface MainLayoutProps {
 
 const MainLayout: FC<MainLayoutProps> = ({ children }) => {
   const [scroll, scrollTo] = useWindowScroll();
+
+  const { mutate, isPending, isPaused } = accountApi.useSignUp();
+
+  useLayoutEffect(() => {
+    const userId = localStorage.getItem(StorageKey.USER_ID);
+
+    if (!userId) {
+      mutate();
+    }
+  }, [mutate]);
+
+  if (isPending || isPaused) {
+    return <LoadingOverlay visible />;
+  }
 
   return (
     <AppShell

@@ -1,15 +1,17 @@
 import { MovieSort } from 'enums';
 import z from 'zod';
 
-import { searchQuerySchema } from 'schemas';
+import { ratedMovieSchema, searchQuerySchema } from 'schemas';
 
 export interface Movie {
   id: number;
   original_title: string;
-  poster_path?: string;
   release_date: string;
   vote_average: number;
   vote_count: number;
+  genre_ids: number[];
+  poster_path?: string;
+  rating?: number;
 }
 
 export interface MovieGenre {
@@ -34,18 +36,7 @@ interface MovieTrailer {
   id: string;
 }
 
-export interface GeneralMovie extends Movie {
-  genre_ids: number[];
-}
-
-export interface SearchMovieResult {
-  page: number;
-  results: GeneralMovie[];
-  total_pages: number;
-  total_results: number;
-}
-
-export interface DetailedMovie extends Movie {
+export interface DetailedMovie extends Omit<Movie, 'genre_ids'> {
   runtime: number;
   budget: number;
   revenue: number;
@@ -57,7 +48,16 @@ export interface DetailedMovie extends Movie {
   };
 }
 
+export interface SearchMovieResult {
+  page: number;
+  results: Movie[];
+  total_pages: number;
+  total_results: number;
+}
+
 export type SearchQuery = z.infer<typeof searchQuerySchema>;
+
+export type RatedMovie = z.infer<typeof ratedMovieSchema>;
 
 type VoteAverage = {
   lte?: '' | number;
@@ -65,8 +65,8 @@ type VoteAverage = {
 };
 
 export type SearchQueryForm = {
-  with_genres?: string[];
   primary_release_year?: Date[];
   sort_by: MovieSort;
   vote_average: VoteAverage;
+  with_genres?: string[];
 };

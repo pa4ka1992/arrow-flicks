@@ -1,14 +1,14 @@
 import React, { FC, useMemo } from 'react';
 import { Text, Tooltip } from '@mantine/core';
 import { useMediaQuery } from '@mantine/hooks';
-import { GeneralMovie } from 'app-types';
+import { Movie } from 'app-types';
 
 import { tmdbApi } from 'resources/tmdb';
 
 import { getGenres } from '../utils';
 
 interface GeneralInfoProps {
-  genres: GeneralMovie['genre_ids'];
+  genres: Movie['genre_ids'];
 }
 
 const MAX_SHOWN_GENRES = 2;
