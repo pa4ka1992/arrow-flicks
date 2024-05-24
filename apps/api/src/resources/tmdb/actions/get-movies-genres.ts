@@ -1,6 +1,6 @@
-import { tmdbService } from 'services';
-
 import { AppKoaContext, AppRouter } from 'types';
+
+import tmdbService from '../tmdb.service';
 
 async function handler(ctx: AppKoaContext) {
   const response = await tmdbService.getMoviesGenres();

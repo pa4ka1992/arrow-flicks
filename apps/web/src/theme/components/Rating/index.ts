@@ -4,7 +4,7 @@ import classes from './index.module.css';
 
 export default Rating.extend({
   defaultProps: {
-    fractions: 2,
+    fractions: 10,
     size: 'lg',
   },
   classNames: classes,

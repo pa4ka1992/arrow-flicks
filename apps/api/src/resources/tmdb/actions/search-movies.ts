@@ -3,10 +3,11 @@ import { z } from 'zod';
 import { userService } from 'resources/user';
 
 import { validateMiddleware } from 'middlewares';
-import { tmdbService } from 'services';
 
 import { searchQuerySchema } from 'schemas';
 import { AppKoaContext, AppRouter, SearchMovieResult } from 'types';
+
+import tmdbService from '../tmdb.service';
 
 type ValidatedData = z.infer<typeof searchQuerySchema>;
 

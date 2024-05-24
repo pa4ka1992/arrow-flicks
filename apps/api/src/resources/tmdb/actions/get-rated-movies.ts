@@ -1,10 +1,11 @@
 import z from 'zod';
 
 import { validateMiddleware } from 'middlewares';
-import { tmdbService } from 'services';
 
 import { paginationSchema } from 'schemas';
 import { AppKoaContext, AppRouter } from 'types';
+
+import tmdbService from '../tmdb.service';
 
 type ValidatedData = z.infer<typeof paginationSchema>;
 
