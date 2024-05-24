@@ -22,7 +22,7 @@ interface DurationSettings {
 
 const run = async (migrations: Migration[], curVersion: number) => {
   const newMigrations = migrations
-    .filter((migration: Migration) => migration.version > curVersion)
+    .filter((migration: Migration) => migration?.version > curVersion)
     .sort((a: Migration, b: Migration) => a.version - b.version);
 
   if (!newMigrations.length) {

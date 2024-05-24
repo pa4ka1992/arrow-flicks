@@ -6,7 +6,7 @@ import { tmdbApi } from 'resources/tmdb';
 
 import { useFilterFormContext } from '../../form.context';
 import Dropdown from './Dropdown';
-import { getInputView, splitGenresIds } from './utils';
+import { getInputView } from './utils';
 
 import classes from './index.module.css';
 
@@ -33,7 +33,7 @@ export const GenresSelect: FC<GenresSelectProps> = ({ formIsReady }) => {
       ? genresId.filter((option) => option !== newOption)
       : [...genresId, newOption];
 
-    form.setFieldValue('with_genres', splitGenresIds(updatedOptions));
+    form.setFieldValue('with_genres', updatedOptions);
 
     setGenresId(updatedOptions);
   };
