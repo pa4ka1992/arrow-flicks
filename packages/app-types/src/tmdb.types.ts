@@ -66,15 +66,15 @@ export type SearchQuery = z.infer<typeof searchQuerySchema>;
 export type RatedMovie = z.infer<typeof ratedMovieSchema>;
 
 type VoteAverage = {
-  lte?: '' | number;
-  gte?: '' | number;
+  lte: '' | number;
+  gte: '' | number;
 };
 
 export type SearchQueryForm = {
-  primary_release_year?: Date[];
+  primary_release_year: Date[];
   sort_by: MovieSort;
   vote_average: VoteAverage;
-  with_genres?: string[];
+  with_genres: string[];
 };
 
 export type SearchRatedForm = {

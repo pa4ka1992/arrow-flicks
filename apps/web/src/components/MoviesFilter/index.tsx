@@ -1,4 +1,4 @@
-import React, { FC, useLayoutEffect, useRef, useState } from 'react';
+import React, { FC, useEffect, useRef, useState } from 'react';
 import { useSearchParams } from 'next/navigation';
 import { useRouter } from 'next/router';
 import { Button, Flex, Group } from '@mantine/core';
@@ -49,13 +49,14 @@ const MoviesFilter: FC = () => {
     localStorage.removeItem(StorageKey.FILTER);
   };
 
-  useLayoutEffect(() => {
+  useEffect(() => {
     if (isInitialQueryApplied) {
       return;
     }
 
     if (router.isReady && isGenresSuccess) {
       form.setValues(parseSearchParams(searchParams));
+      form.resetTouched();
 
       setIsInitialQueryApplied(true);
     }

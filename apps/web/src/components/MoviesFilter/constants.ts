@@ -3,10 +3,13 @@ import { SearchQueryForm } from 'app-types';
 import { TMDB_DEFAULT_SORT } from 'app-constants';
 
 export const INITIAL_VALUES: SearchQueryForm = {
-  with_genres: undefined,
-  primary_release_year: undefined,
-  vote_average: {},
+  with_genres: [],
+  primary_release_year: [],
+  vote_average: {
+    gte: '',
+    lte: '',
+  },
   sort_by: TMDB_DEFAULT_SORT,
 };
 
-export const DEBOUNCE_TIME = 300;
+export const DEBOUNCE_TIME = 500;

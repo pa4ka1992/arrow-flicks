@@ -1,41 +1,40 @@
 import { ReadonlyURLSearchParams } from 'next/navigation';
-import { QuerySeparator, SearchQueryForm } from 'app-types';
+import { MovieSort, QuerySeparator, SearchQueryForm } from 'app-types';
+
+import { INITIAL_VALUES } from '../constants';
 
 type ParseSearchParams = (params: ReadonlyURLSearchParams) => SearchQueryForm;
 
 const getArrayQuery = (array: string) => array.split(QuerySeparator.OR);
 
 export const parseSearchParams: ParseSearchParams = (params) => {
-  const initialValues: any = { vote_average: {} };
+  const initialValues = structuredClone(INITIAL_VALUES);
 
   params.forEach((value, key) => {
-    if (key === 'page') {
-      return;
+    switch (key) {
+      case 'with_genres':
+        initialValues[key] = getArrayQuery(value);
+        break;
+
+      case 'primary_release_year':
+        initialValues[key] = getArrayQuery(value).map((year) => new Date(String(year)));
+        break;
+      case 'sort_by':
+        initialValues[key] = value as MovieSort;
+        break;
+
+      case 'vote_average.gte':
+        initialValues.vote_average.gte = Number(value);
+        break;
+
+      case 'vote_average.lte':
+        initialValues.vote_average.lte = Number(value);
+        break;
+
+      default:
+        break;
     }
-
-    if (key === 'with_genres') {
-      const genresArray = getArrayQuery(value);
-
-      initialValues[key] = genresArray;
-      return;
-    }
-
-    if (key === 'primary_release_year') {
-      const yearArray = getArrayQuery(value);
-
-      initialValues[key] = yearArray.map((year) => new Date(String(year)));
-      return;
-    }
-
-    if (['vote_average.lte', 'vote_average.gte'].includes(key)) {
-      const slicedKey = key.replace('vote_average.', '');
-
-      initialValues.vote_average[slicedKey] = Number(value);
-      return;
-    }
-
-    initialValues[key] = value;
   });
 
-  return initialValues as SearchQueryForm;
+  return initialValues;
 };

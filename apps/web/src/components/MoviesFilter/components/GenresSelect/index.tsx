@@ -20,7 +20,6 @@ export const GenresSelect: FC<GenresSelectProps> = ({ formIsReady }) => {
   const form = useFilterFormContext();
   const { data: result, isLoading } = tmdbApi.useGetMoviesGenres();
   const [genresId, setGenresId] = useState<string[]>([]);
-  const [isInitalGenresApplied, setIsInitialGenresApplied] = useState(false);
 
   const combobox = useCombobox({
     onDropdownClose: () => combobox.resetSelectedOption(),
@@ -28,9 +27,15 @@ export const GenresSelect: FC<GenresSelectProps> = ({ formIsReady }) => {
   });
 
   const selectOption = (newOption: string) => {
-    setGenresId((prev) =>
-      prev.includes(newOption) ? prev.filter((option) => option !== newOption) : [...prev, newOption],
-    );
+    const isOptionActive = genresId.includes(newOption);
+
+    const updatedOptions = isOptionActive
+      ? genresId.filter((option) => option !== newOption)
+      : [...genresId, newOption];
+
+    form.setFieldValue('with_genres', splitGenresIds(updatedOptions));
+
+    setGenresId(updatedOptions);
   };
 
   const inputView = useMemo(() => {
@@ -42,19 +47,6 @@ export const GenresSelect: FC<GenresSelectProps> = ({ formIsReady }) => {
 
     return getInputView(genresNames);
   }, [result, genresId]);
-
-  useEffect(() => {
-    if (!isInitalGenresApplied) {
-      return;
-    }
-
-    if (!genresId.length) {
-      form.setFieldValue('with_genres', undefined);
-      return;
-    }
-
-    form.setFieldValue('with_genres', splitGenresIds(genresId));
-  }, [genresId, isInitalGenresApplied]);
 
   useEffect(() => {
     if (!form.isDirty()) {
@@ -72,9 +64,7 @@ export const GenresSelect: FC<GenresSelectProps> = ({ formIsReady }) => {
     if (initialGenres) {
       setGenresId(initialGenres);
     }
-
-    setIsInitialGenresApplied(true);
-  }, [formIsReady]);
+  }, [form, formIsReady]);
 
   return (
     <Combobox disabled={isLoading} onOptionSubmit={selectOption} store={combobox} withinPortal={false}>
