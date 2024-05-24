@@ -4,7 +4,7 @@ import { TMDB_DEFAULT_SORT } from 'app-constants';
 
 export const INITIAL_VALUES: SearchQueryForm = {
   with_genres: [],
-  primary_release_year: [],
+  primary_release_year: null,
   vote_average: {
     gte: '',
     lte: '',

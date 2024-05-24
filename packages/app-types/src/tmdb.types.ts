@@ -71,7 +71,7 @@ type VoteAverage = {
 };
 
 export type SearchQueryForm = {
-  primary_release_year: Date[];
+  primary_release_year: Date | null;
   sort_by: MovieSort;
   vote_average: VoteAverage;
   with_genres: string[];

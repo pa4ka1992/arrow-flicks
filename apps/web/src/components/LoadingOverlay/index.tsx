@@ -14,6 +14,6 @@ const LoadingOverlay: FC<LoadingOverlayProps> = (props) => {
     }
   }, [visible]);
 
-  return <LoadingOverlayMantine {...props} loaderProps={{ children: <Loader /> }} />;
+  return <LoadingOverlayMantine {...props} pos="fixed" loaderProps={{ children: <Loader /> }} />;
 };
 export default LoadingOverlay;

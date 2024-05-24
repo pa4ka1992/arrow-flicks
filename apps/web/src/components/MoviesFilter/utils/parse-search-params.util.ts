@@ -17,7 +17,7 @@ export const parseSearchParams: ParseSearchParams = (params) => {
         break;
 
       case 'primary_release_year':
-        initialValues[key] = getArrayQuery(value).map((year) => new Date(String(year)));
+        initialValues[key] = new Date(String(value));
         break;
       case 'sort_by':
         initialValues[key] = value as MovieSort;

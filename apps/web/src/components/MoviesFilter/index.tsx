@@ -45,6 +45,9 @@ const MoviesFilter: FC = () => {
   const isResetDisabled = !form.isDirty();
 
   const resetForm = () => {
+    const queryString = stringifySearchParams(INITIAL_VALUES);
+
+    replaceQuery(queryString);
     form.reset();
     localStorage.removeItem(StorageKey.FILTER);
   };

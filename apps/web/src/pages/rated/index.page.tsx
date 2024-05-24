@@ -17,6 +17,7 @@ const Rated: NextPage = () => {
   const [page, setPage] = useState(TMDB_DEFAULT_PAGE);
 
   const getRatedMovies = tmdbApi.useGetRatedMovies({ page, searchValue, perPage: RATED_PER_PAGE });
+
   const { data: ratedSearch, isFetched } = getRatedMovies;
 
   const updateSearch = (value: string) => setSearchValue(value);

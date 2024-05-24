@@ -18,20 +18,25 @@ interface RatingProps {
 
 const Rating: FC<RatingProps> = ({ movie }) => {
   const [opened, { open, close }] = useDisclosure(false);
-  const [rating, setRating] = useState(movie.rating ?? 0);
+
+  const [rating, setRating] = useState(movie.rating);
   const addRating = tmdbApi.useAddRating();
   const updateRating = tmdbApi.useUpdateRating();
   const deleteRating = tmdbApi.useDeleteRating();
 
   const isRatingAssigned = typeof movie.rating !== 'undefined';
+  const isRemoveDisabled = typeof rating === 'undefined';
 
   const changeRating = (value: number) => setRating(value);
 
   const removeRating = () => {
-    const { mutate } = deleteRating;
+    if (isRatingAssigned) {
+      const { mutate } = deleteRating;
 
-    setRating(0);
-    mutate({ id: movie.id });
+      mutate({ id: movie.id });
+    }
+
+    setRating(undefined);
     close();
   };
 
@@ -39,7 +44,8 @@ const Rating: FC<RatingProps> = ({ movie }) => {
     if (isRatingAssigned) {
       const { mutate } = updateRating;
 
-      mutate({ id: movie.id, rating });
+      mutate({ id: movie.id, rating: rating ?? 0 });
+      setRating(rating ?? 0);
       close();
 
       return;
@@ -49,11 +55,12 @@ const Rating: FC<RatingProps> = ({ movie }) => {
     const { mutate } = addRating;
 
     close();
-    mutate({ ...body, rating });
+    setRating(rating ?? 0);
+    mutate({ ...body, rating: rating ?? 0 });
   };
 
   const closeModal = () => {
-    setRating(movie.rating ?? 0);
+    setRating(movie.rating);
     close();
   };
 
@@ -67,7 +74,7 @@ const Rating: FC<RatingProps> = ({ movie }) => {
 
           <Group gap={3}>
             <Button onClick={submitRating}>Save</Button>
-            <Button onClick={removeRating} variant="subtle">
+            <Button disabled={isRemoveDisabled} onClick={removeRating} variant="subtle">
               Remove rating
             </Button>
           </Group>

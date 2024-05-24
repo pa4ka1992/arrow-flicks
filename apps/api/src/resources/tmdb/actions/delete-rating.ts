@@ -22,8 +22,9 @@ async function handler(ctx: AppKoaContext<ValidatedData>) {
     const user = await userService.findOne({ _id: userId });
 
     if (user) {
-      const { ratedMovies } = user;
-      delete user.ratedMovies[id];
+      const ratedMovies = { ...user.ratedMovies };
+
+      delete ratedMovies[id];
       await userService.updateOne({ _id: userId }, () => ({ ratedMovies }));
 
       await tmdbService.db.deleteOne({ userId, id });

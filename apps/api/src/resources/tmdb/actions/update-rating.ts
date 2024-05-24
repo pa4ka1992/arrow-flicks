@@ -23,7 +23,7 @@ async function handler(ctx: AppKoaContext<ValidatedData>) {
     const user = await userService.findOne({ _id: userId });
 
     if (user) {
-      const { ratedMovies } = user;
+      const ratedMovies = { ...user.ratedMovies };
 
       ratedMovies[id] = rating;
       await userService.updateOne({ _id: userId }, () => ({ ratedMovies }));

@@ -4,7 +4,7 @@ import { TMDB_DEFAULT_PAGE } from 'app-constants';
 
 type StringifySearchParams = (formData: SearchQueryForm) => URLSearchParams;
 
-const getDatesYear = (dates?: Date[]) => dates?.map((date) => date.getFullYear());
+const getDatesYear = (date: Date | null) => date?.getFullYear();
 
 const getQueryArray = (array?: unknown[]) => array?.join(QuerySeparator.OR);
 
@@ -18,7 +18,7 @@ export const stringifySearchParams: StringifySearchParams = ({
 }) => {
   const queryPairs: [string, string | number | undefined][] = [
     ['with_genres', getQueryArray(with_genres)],
-    ['primary_release_year', getQueryArray(getDatesYear(primary_release_year))],
+    ['primary_release_year', getDatesYear(primary_release_year)],
     ['sort_by', sort_by],
     ['vote_average.lte', getQueryNumber(vote_average.lte)],
     ['vote_average.gte', getQueryNumber(vote_average.gte)],
