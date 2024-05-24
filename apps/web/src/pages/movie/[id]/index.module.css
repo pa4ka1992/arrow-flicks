@@ -1,0 +1,11 @@
+.root {
+  a:last-child {
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    overflow: hidden;
+  }
+}
+
+.separator {
+  margin: '0 10px';
+}

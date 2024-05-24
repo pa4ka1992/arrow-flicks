@@ -1,9 +1,12 @@
 import { z } from 'zod';
 
-import { validateMiddleware } from 'middlewares';
-import { tmdbService } from 'services';
+import { userService } from 'resources/user';
 
-import { AppKoaContext, AppRouter } from 'types';
+import { validateMiddleware } from 'middlewares';
+
+import { AppKoaContext, AppRouter, DetailedMovie } from 'types';
+
+import tmdbService from '../tmdb.service';
 
 const schema = z.object({
   movieId: z.string(),
@@ -12,8 +15,21 @@ const schema = z.object({
 type ValidatedData = z.infer<typeof schema>;
 
 async function handler(ctx: AppKoaContext<ValidatedData>) {
+  const userId = ctx.headers.authorization;
   const response = await tmdbService.getMovieDetails(ctx.validatedData);
-  const body = await response.json();
+  const detailedMovie = (await response.json()) as DetailedMovie;
+
+  let body = detailedMovie;
+
+  if (userId) {
+    const user = await userService.findOne({ _id: userId });
+
+    if (user) {
+      const rating = user.ratedMovies[detailedMovie.id];
+
+      body = { ...detailedMovie, rating };
+    }
+  }
 
   ctx.body = body;
   ctx.status = 200;

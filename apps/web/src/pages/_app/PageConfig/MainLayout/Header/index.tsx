@@ -1,34 +1,14 @@
-import React, { FC, memo } from 'react';
-import Link from 'next/link';
-import { Anchor, AppShell, Group } from '@mantine/core';
+import React, { FC } from 'react';
+import { AppShell, Group } from '@mantine/core';
 
-import { accountApi } from 'resources/account';
+import { Logo } from 'components';
 
-import { LogoImage } from 'public/images';
+const Header: FC = () => (
+  <AppShell.Header bg="purple.3" hiddenFrom="lg" mr={-16} p={{ base: 8, xs: 'xs' }} withBorder={false}>
+    <Group align="center" h="100%" justify="flex-start" grow>
+      <Logo />
+    </Group>
+  </AppShell.Header>
+);
 
-import { RoutePath } from 'routes';
-
-import ShadowLoginBanner from './components/ShadowLoginBanner';
-import UserMenu from './components/UserMenu';
-
-const Header: FC = () => {
-  const { data: account } = accountApi.useGet();
-
-  if (!account) return null;
-
-  return (
-    <AppShell.Header>
-      {account.isShadow && <ShadowLoginBanner email={account.email} />}
-
-      <Group h={72} px={32} py={0} justify="space-between" bg="white">
-        <Anchor component={Link} href={RoutePath.Home}>
-          <LogoImage />
-        </Anchor>
-
-        <UserMenu />
-      </Group>
-    </AppShell.Header>
-  );
-};
-
-export default memo(Header);
+export default Header;

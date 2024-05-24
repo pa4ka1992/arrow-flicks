@@ -1,31 +1,40 @@
 import { z } from 'zod';
 
+import { userService } from 'resources/user';
+
 import { validateMiddleware } from 'middlewares';
-import { tmdbService } from 'services';
 
-import { AppKoaContext, AppRouter } from 'types';
+import { searchQuerySchema } from 'schemas';
+import { AppKoaContext, AppRouter, SearchMovieResult } from 'types';
 
-const sortTypeSchema = z.enum(['original_title.asc', 'popularity.asc']);
+import tmdbService from '../tmdb.service';
 
-const schema = z.object({
-  page: z.string(),
-  with_genres: z.string().optional(),
-  primary_release_year: z.string().optional(),
-  'vote_average.lte': z.string().optional(),
-  'vote_average.gte': z.string().optional(),
-  sort_by: sortTypeSchema.optional(),
-});
-
-type ValidatedData = z.infer<typeof schema>;
+type ValidatedData = z.infer<typeof searchQuerySchema>;
 
 async function handler(ctx: AppKoaContext<ValidatedData>) {
+  const userId = ctx.headers.authorization;
   const response = await tmdbService.searchMovies(ctx.validatedData);
-  const body = await response.json();
+  const searchResult = (await response.json()) as SearchMovieResult;
+  let body = searchResult;
+
+  if (userId) {
+    const user = await userService.findOne({ _id: userId });
+
+    if (user) {
+      const moviesWithRating = searchResult.results.map((movie) => {
+        const rating = user.ratedMovies[movie.id];
+
+        return { ...movie, rating };
+      });
+
+      body = { ...searchResult, results: moviesWithRating };
+    }
+  }
 
   ctx.body = body;
   ctx.status = 200;
 }
 
 export default (router: AppRouter) => {
-  router.get('/search-movies', validateMiddleware(schema), handler);
+  router.get('/search-movies', validateMiddleware(searchQuerySchema), handler);
 };

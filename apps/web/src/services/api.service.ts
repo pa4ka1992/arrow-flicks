@@ -1,5 +1,6 @@
 // eslint-disable-next-line max-classes-per-file
-import axios, { AxiosInstance, AxiosRequestConfig, AxiosResponse } from 'axios';
+import { StorageKey } from 'app-types';
+import axios, { AxiosInstance, AxiosRequestConfig, AxiosResponse, InternalAxiosRequestConfig } from 'axios';
 
 import config from 'config';
 
@@ -64,6 +65,12 @@ class ApiClient {
         return throwApiError(errorResponse);
       },
     );
+
+    this._api.interceptors.request.use((requestConfig: InternalAxiosRequestConfig) => {
+      requestConfig.headers.Authorization = localStorage.getItem(StorageKey.USER_ID) || '';
+
+      return requestConfig;
+    });
   }
 
   get(url: string, params: any = {}, requestConfig: AxiosRequestConfig<any> = {}): Promise<any> {

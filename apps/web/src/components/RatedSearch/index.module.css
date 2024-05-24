@@ -1,0 +1,26 @@
+.wrapper {
+  flex-grow: 1;
+}
+
+.section {
+  color: var(--mantine-color-gray-5);
+
+  &[data-position='right'] {
+    width: 90px;
+
+    @media screen and (max-width: $mantine-breakpoint-xs) {
+      width: 78px;
+
+      button {
+        height: var(--input-height-sm);
+        border-top-left-radius: 0;
+        border-bottom-left-radius: 0;
+      }
+    }
+  }
+}
+
+.input {
+  padding-right: 90px;
+  padding-left: 35px;
+}

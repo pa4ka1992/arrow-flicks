@@ -1,5 +1,3 @@
-import { userService } from 'resources/user';
-
 import config from 'config';
 
 import logger from 'logger';
@@ -29,7 +27,6 @@ const routeErrorHandler = async (ctx: AppKoaContext, next: Next) => {
         loggerMetadata = {
           requestBody: ctx.request.body,
           requestQuery: ctx.request.query,
-          user: userService.getPublic(ctx.state.user),
         };
       }
 

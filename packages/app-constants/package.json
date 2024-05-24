@@ -8,6 +8,10 @@
     "test:eslint": "eslint \"**/*.ts\" --fix",
     "precommit": "lint-staged"
   },
+  "dependencies": {
+    "enums": "workspace:*",
+    "app-types": "workspace:*"
+  },
   "devDependencies": {
     "@types/node": "*",
     "eslint": "*",

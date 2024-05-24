@@ -1,0 +1,50 @@
+.label {
+  font-weight: 700;
+  padding-bottom: 8px;
+
+  @media screen and (max-width: $mantine-breakpoint-xs) {
+    font-size: var(--mantine-font-size-xs);
+    padding-bottom: 4px;
+  }
+}
+
+.input {
+  font-size: var(--mantine-font-size-xs);
+  height: var(--input-height-md);
+
+  &[data-expanded] + [data-position='right'] {
+    color: var(--mantine-primary-color-6);
+    transform: rotate(180deg);
+  }
+
+  @media screen and (max-width: $mantine-breakpoint-md) {
+    height: var(--input-height-sm);
+  }
+}
+
+.section {
+  transform: rotate(0);
+  transition: transform 0.2s;
+}
+
+.option {
+  transition: background-color 0.2s;
+  svg {
+    display: none;
+  }
+
+  &:hover {
+    background-color: var(--mantine-primary-color-1);
+  }
+
+  &[data-checked='true'] {
+    color: var(--mantine-color-white);
+    background-color: var(--mantine-primary-color-6);
+  }
+}
+
+.dropdown,
+.option {
+  border-radius: var(--mantine-radius-md);
+  font-size: var(--mantine-font-size-xs);
+}

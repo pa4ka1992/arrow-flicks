@@ -13,14 +13,14 @@ import queryClient from 'query-client';
 
 import PageConfig from './PageConfig';
 
-import '@mantine/core/styles.css';
-import '@mantine/dates/styles.css';
-import '@mantine/notifications/styles.css';
+import '@mantine/core/styles.layer.css';
+import '@mantine/dates/styles.layer.css';
+import '@mantine/notifications/styles.layer.css';
 
 const App: FC<AppProps> = ({ Component, pageProps }) => (
   <>
     <Head>
-      <title>Ship</title>
+      <title>Arrow Flicks</title>
     </Head>
 
     <QueryClientProvider client={queryClient}>

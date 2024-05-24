@@ -1,0 +1,30 @@
+.box {
+  gap: var(--mantine-spacing-sm);
+
+  @media screen and (max-width: $mantine-breakpoint-xs) {
+    gap: var(--mantine-spacing-xs);
+  }
+}
+
+.active {
+  color: var(--mantine-primary-color-6);
+}
+
+.default {
+  color: var(--mantine-color-grey-4);
+}
+
+.rating {
+  width: 26px;
+  height: 26px;
+  transition: color 0.2s;
+
+  &:hover {
+    color: var(--mantine-primary-color-4);
+  }
+
+  @media screen and (max-width: $mantine-breakpoint-sm) {
+    width: 23px;
+    height: 23px;
+  }
+}
