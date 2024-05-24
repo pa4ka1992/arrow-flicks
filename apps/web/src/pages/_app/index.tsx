@@ -1,4 +1,4 @@
-import React, { FC } from 'react';
+import React, { FC, useLayoutEffect } from 'react';
 import { AppProps } from 'next/app';
 import Head from 'next/head';
 import { MantineProvider } from '@mantine/core';
@@ -17,25 +17,33 @@ import '@mantine/core/styles.layer.css';
 import '@mantine/dates/styles.layer.css';
 import '@mantine/notifications/styles.layer.css';
 
-const App: FC<AppProps> = ({ Component, pageProps }) => (
-  <>
-    <Head>
-      <title>Arrow Flicks</title>
-    </Head>
+const App: FC<AppProps> = ({ Component, pageProps }) => {
+  useLayoutEffect(() => {
+    console.warn(
+      'Application is deployed on render service. The first boot can take up to 50 seconds. If nothing happens, reload the page',
+    );
+  }, []);
 
-    <QueryClientProvider client={queryClient}>
-      <MantineProvider theme={theme}>
-        <ModalsProvider>
-          <PageConfig>
-            <Component {...pageProps} />
-          </PageConfig>
-        </ModalsProvider>
+  return (
+    <>
+      <Head>
+        <title>Arrow Flicks</title>
+      </Head>
 
-        <Notifications autoClose={10000} />
-        <ReactQueryDevtools buttonPosition="bottom-left" />
-      </MantineProvider>
-    </QueryClientProvider>
-  </>
-);
+      <QueryClientProvider client={queryClient}>
+        <MantineProvider theme={theme}>
+          <ModalsProvider>
+            <PageConfig>
+              <Component {...pageProps} />
+            </PageConfig>
+          </ModalsProvider>
+
+          <Notifications autoClose={10000} />
+          <ReactQueryDevtools buttonPosition="bottom-left" />
+        </MantineProvider>
+      </QueryClientProvider>
+    </>
+  );
+};
 
 export default App;

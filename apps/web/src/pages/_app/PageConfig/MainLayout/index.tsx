@@ -1,10 +1,12 @@
 import React, { FC, ReactElement, useLayoutEffect } from 'react';
-import { Affix, AppShell, Button, LoadingOverlay, rem, Transition } from '@mantine/core';
+import { Affix, AppShell, Button, rem, Transition } from '@mantine/core';
 import { useWindowScroll } from '@mantine/hooks';
 import { IconArrowUp } from '@tabler/icons-react';
 import { StorageKey } from 'app-types';
 
 import { accountApi } from 'resources/account';
+
+import { LoadingOverlay } from 'components';
 
 import Header from './Header';
 import Navbar from './Navbar';

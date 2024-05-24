@@ -1,4 +1,4 @@
-# [Documentation](https://ship.paralect.com/docs/introduction)
+# [Paralect Ship Documentation](https://ship.paralect.com/docs/introduction)
 
 ## Starting application with Turborepo
 

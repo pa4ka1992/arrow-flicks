@@ -3,11 +3,11 @@ import { NextPage } from 'next';
 import Head from 'next/head';
 import Link from 'next/link';
 import { useRouter } from 'next/router';
-import { Anchor, Breadcrumbs, Container, LoadingOverlay, Stack } from '@mantine/core';
+import { Anchor, Breadcrumbs, Container, Stack } from '@mantine/core';
 
 import { tmdbApi } from 'resources/tmdb';
 
-import { MovieCard, TrailerCard } from 'components';
+import { LoadingOverlay, MovieCard, TrailerCard } from 'components';
 
 import { useRestoreQuery } from 'utils';
 

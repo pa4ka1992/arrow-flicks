@@ -1,5 +1,6 @@
 export { default as EmptyMovies } from './EmptyMovies';
 export { default as EmptyRated } from './EmptyRated';
+export { default as LoadingOverlay } from './LoadingOverlay';
 export { default as Logo } from './Logo';
 export { default as MovieCard } from './MovieCard';
 export { default as NoPoster } from './MovieCard/components/NoPoster';

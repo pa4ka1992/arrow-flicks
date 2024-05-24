@@ -1,11 +1,13 @@
 import React, { FC, useEffect, useState } from 'react';
 import { useSearchParams } from 'next/navigation';
 import { useRouter } from 'next/router';
-import { Box, Center, Grid, Loader, LoadingOverlay, Stack } from '@mantine/core';
+import { Box, Center, Grid, Stack } from '@mantine/core';
 
 import { tmdbApi } from 'resources/tmdb';
 
 import EmptyMovies from 'components/EmptyMovies';
+import Loader from 'components/Loader';
+import LoadingOverlay from 'components/LoadingOverlay';
 
 import MovieCard from '../MovieCard';
 import MoviesPagination from '../MoviesPagination';
@@ -26,7 +28,7 @@ const SearchMovieList: FC = () => {
   if (isLoading || !enableQuery) {
     return (
       <Center mt="xl">
-        <Loader size="md" />
+        <Loader />
       </Center>
     );
   }

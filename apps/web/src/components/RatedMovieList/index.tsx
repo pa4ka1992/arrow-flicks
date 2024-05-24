@@ -1,9 +1,11 @@
 import React, { FC, ReactNode } from 'react';
-import { Box, Center, Grid, Loader, LoadingOverlay, Stack } from '@mantine/core';
+import { Box, Center, Grid, Stack } from '@mantine/core';
 import { UseQueryResult } from '@tanstack/react-query';
 import { RatedMovieResult } from 'app-types';
 
 import EmptyMovies from 'components/EmptyMovies';
+import Loader from 'components/Loader';
+import LoadingOverlay from 'components/LoadingOverlay';
 
 import MovieCard from '../MovieCard';
 
@@ -19,7 +21,7 @@ const RatedMovieList: FC<RatedMovieListProps> = ({ query, children, searchValue 
   if (isLoading) {
     return (
       <Center mt="xl">
-        <Loader size="md" />
+        <Loader />
       </Center>
     );
   }
