@@ -12,6 +12,10 @@ const LoadingOverlay: FC<LoadingOverlayProps> = (props) => {
     } else {
       document.body.style.overflow = 'auto';
     }
+
+    return () => {
+      document.body.style.overflow = 'auto';
+    };
   }, [visible]);
 
   return <LoadingOverlayMantine {...props} pos="fixed" loaderProps={{ children: <Loader /> }} />;
