@@ -25,4 +25,12 @@ module.exports = {
   },
   pageExtensions: ['page.tsx', 'api.ts'],
   transpilePackages: ['app-constants', 'schemas', 'types'],
+  images: {
+    remotePatterns: [
+      {
+        protocol: 'https',
+        hostname: 'image.tmdb.org',
+      },
+    ],
+  },
 };

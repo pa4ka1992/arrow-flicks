@@ -1,0 +1,39 @@
+.label {
+  font-weight: 700;
+  padding-bottom: 8px;
+
+  @media screen and (max-width: $mantine-breakpoint-xs) {
+    font-size: var(--mantine-font-size-xs);
+    padding-bottom: 4px;
+  }
+}
+
+.input {
+  font-size: var(--mantine-font-size-xs);
+  height: var(--input-height-md);
+
+  @media screen and (max-width: $mantine-breakpoint-md) {
+    height: var(--input-height-sm);
+  }
+}
+
+.controls {
+  flex: 1 0 100%;
+  max-width: none;
+  margin-left: 0;
+  margin-right: 5px;
+
+  @media screen and (max-width: $mantine-breakpoint-md) {
+    height: 28px;
+  }
+}
+
+.control {
+  color: var(--mantine-color-dimmed);
+  border: none;
+
+  &:hover {
+    color: var(--mantine-primary-color-6);
+    background-color: var(--mantine-primary-color-0);
+  }
+}

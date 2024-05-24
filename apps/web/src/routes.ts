@@ -1,24 +1,17 @@
 export enum ScopeType {
   PUBLIC = 'PUBLIC',
-  PRIVATE = 'PRIVATE',
 }
 
 export enum LayoutType {
-  MAIN = 'MAIN',
-  UNAUTHORIZED = 'UNAUTHORIZED',
+  HOME = 'HOME',
+  MOVIE = 'MOVIE',
+  RATED = 'RATED',
 }
 
 export enum RoutePath {
-  // Private paths
   Home = '/',
-  Profile = '/profile',
-
-  // Auth paths
-  SignIn = '/sign-in',
-  SignUp = '/sign-up',
-  ForgotPassword = '/forgot-password',
-  ResetPassword = '/reset-password',
-  ExpireToken = '/expire-token',
+  Movie = '/movie/[id]',
+  Rated = '/rated',
 
   NotFound = '/404',
 }
@@ -31,36 +24,18 @@ type RoutesConfiguration = {
 };
 
 export const routesConfiguration: RoutesConfiguration = {
-  // Private routes
   [RoutePath.Home]: {
-    scope: ScopeType.PRIVATE,
-    layout: LayoutType.MAIN,
+    scope: ScopeType.PUBLIC,
+    layout: LayoutType.HOME,
   },
-  [RoutePath.Profile]: {
-    scope: ScopeType.PRIVATE,
-    layout: LayoutType.MAIN,
+  [RoutePath.Rated]: {
+    scope: ScopeType.PUBLIC,
+    layout: LayoutType.RATED,
   },
 
-  // Auth routes
-  [RoutePath.SignIn]: {
+  [RoutePath.Movie]: {
     scope: ScopeType.PUBLIC,
-    layout: LayoutType.UNAUTHORIZED,
-  },
-  [RoutePath.SignUp]: {
-    scope: ScopeType.PUBLIC,
-    layout: LayoutType.UNAUTHORIZED,
-  },
-  [RoutePath.ForgotPassword]: {
-    scope: ScopeType.PUBLIC,
-    layout: LayoutType.UNAUTHORIZED,
-  },
-  [RoutePath.ResetPassword]: {
-    scope: ScopeType.PUBLIC,
-    layout: LayoutType.UNAUTHORIZED,
-  },
-  [RoutePath.ExpireToken]: {
-    scope: ScopeType.PUBLIC,
-    layout: LayoutType.UNAUTHORIZED,
+    layout: LayoutType.MOVIE,
   },
 
   [RoutePath.NotFound]: {},

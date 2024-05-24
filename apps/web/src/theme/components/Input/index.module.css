@@ -1,0 +1,8 @@
+.input {
+  font-size: var(--mantine-font-size-xs);
+
+  @media screen and (max-width: $mantine-breakpoint-xs) {
+    height: var(--input-height-sm);
+    min-height: var(--input-height-sm);
+  }
+}

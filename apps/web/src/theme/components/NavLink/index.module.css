@@ -1,0 +1,24 @@
+.root {
+  border-radius: var(--mantine-radius-md);
+
+  &[data-active='true'] {
+    font-weight: 700;
+    color: var(--mantine-primary-color-6);
+    background-color: var(--mantine-primary-color-3);
+  }
+
+  &:not([data-logo]):hover {
+    color: var(--mantine-primary-color-5);
+  }
+
+  &:not([data-active]):hover {
+    background: transparent;
+  }
+}
+
+.root,
+.label {
+  @media screen and (max-width: $mantine-breakpoint-sm) {
+    font-size: var(--mantine-font-size-sm);
+  }
+}

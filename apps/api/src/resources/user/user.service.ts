@@ -1,5 +1,3 @@
-import _ from 'lodash';
-
 import db from 'db';
 
 import { DATABASE_DOCUMENTS } from 'app-constants';
@@ -20,11 +18,6 @@ const updateLastRequest = (_id: string) =>
     },
   );
 
-const privateFields = ['passwordHash', 'signupToken', 'resetPasswordToken'];
-
-const getPublic = (user: User | null) => _.omit(user, privateFields);
-
 export default Object.assign(service, {
   updateLastRequest,
-  getPublic,
 });

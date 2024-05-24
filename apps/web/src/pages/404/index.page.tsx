@@ -1,26 +1,46 @@
 import React, { NextPage } from 'next';
 import Head from 'next/head';
 import router from 'next/router';
-import { Button, Stack, Text, Title } from '@mantine/core';
+import { AppShell, Button, Image, Stack, Title } from '@mantine/core';
+
+import { Logo } from 'components';
+
+import { useRestoreQuery } from 'utils';
 
 import { RoutePath } from 'routes';
 
-const NotFound: NextPage = () => (
-  <>
-    <Head>
-      <title>Page not found</title>
-    </Head>
+const NotFound: NextPage = () => {
+  const { path } = useRestoreQuery(RoutePath.Home);
 
-    <Stack h="100vh" w={328} justify="center" m="auto">
-      <Title order={2}>Oops! The page is not found.</Title>
+  return (
+    <>
+      <Head>
+        <title>Page not found</title>
+      </Head>
 
-      <Text mx={0} mt={20} mb={24} c="gray.6">
-        The page you are looking for may have been removed, or the link you followed may be broken.
-      </Text>
+      <AppShell
+        header={{
+          height: { base: 56, sm: 80 },
+        }}
+        withBorder={false}
+      >
+        <AppShell.Header bg="grey.1">
+          <Logo mt={{ base: 'xs', sm: 'lg' }} ml={{ base: 'xs', sm: 'lg' }} hideLogo={false} />
+        </AppShell.Header>
 
-      <Button onClick={() => router.push(RoutePath.Home)}>Go to homepage</Button>
-    </Stack>
-  </>
-);
+        <AppShell.Main display="flex">
+          <Stack align="center" gap="sm" maw={696} justify="center" px="md" m="auto">
+            <Image alt="Page not found" src="/images/404.png" />
+            <Title mt={{ base: 'xs', sm: 'xl' }} fz={{ base: 'sm', sm: 'md' }} order={2} ta="center">
+              We can’t find the page you are looking for
+            </Title>
+
+            <Button onClick={() => router.push(path)}>Go home</Button>
+          </Stack>
+        </AppShell.Main>
+      </AppShell>
+    </>
+  );
+};
 
 export default NotFound;

@@ -1,6 +1,7 @@
 import mount from 'koa-mount';
 
 import { accountRoutes } from 'resources/account';
+import { tmdbRoutes } from 'resources/tmdb';
 
 import { AppKoa, AppRouter } from 'types';
 
@@ -12,4 +13,5 @@ healthCheckRouter.get('/health', (ctx) => {
 export default (app: AppKoa) => {
   app.use(healthCheckRouter.routes());
   app.use(mount('/account', accountRoutes.publicRoutes));
+  app.use(mount('/movies', tmdbRoutes.publicRoutes));
 };
